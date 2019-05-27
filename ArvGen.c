@@ -25,6 +25,7 @@ int main(void)
 
     printf("\n!!!\nArvore:\n");
     imprime(a);
+    // funciona ok! libera_destroi(a);
 
     printf("\n!!!\nPRE:\n");
     imprime_pre(a);
@@ -34,5 +35,12 @@ int main(void)
     printf("\n!!!\nArvore:\n");
     imprime_bonito(a);
 
+    TAG *p = busca(a, 8);
+    imprime(p);
+
+    printf("\n%d", busca2(a, 9)); //n existe
+    printf("\n%d", busca2(a, 1)); //existe
+
+    printf("\n");
     return 0;
 }

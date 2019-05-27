@@ -5,7 +5,6 @@
 • um nó aponta apenas para seu primeiro (prim) filho
 • cada um de seus filhos aponta para o próximo (prox) irmão
 
-
 • ponteiro para a primeira sub-árvore filha
 – NULL se o nó for uma folha
 • ponteiro para a próxima sub-árvore irmão
@@ -95,6 +94,41 @@ void imprime_bonito(TAG *a)
     }
 }
 
-int busca(TAG *a, int cod);
+//todo dando segment fault quando n existe
+TAG *busca(TAG *a, int cod)
+{
+    if (!a)
+        return NULL;
+    if (a->cod == cod)
+        return a;
+    TAG *irmao = busca(a->irmao, cod);
+    if (irmao)
+        return irmao;
+    return busca(a->filho, cod);
+}
 
-void libera_destroi(TAG *a);
+int busca2(TAG *a, int cod)
+{
+    TAG *p;
+    if (a->cod == cod)
+        return 1;
+    else
+    {
+        for (p = a->filho; p != NULL; p = p->irmao)
+        {
+            if (busca2(p, cod))
+                return 1;
+        }
+    }
+    return 0;
+}
+
+void libera_destroi(TAG *a)
+{
+    if (a)
+    {
+        libera_destroi(a->irmao);
+        libera_destroi(a->filho);
+        free(a);
+    }
+}
