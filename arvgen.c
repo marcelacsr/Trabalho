@@ -81,3 +81,20 @@ void imprime_pos(TAG *a)
         imprime_pos(a->filho);
     }
 }
+
+void imprime_bonito(TAG *a)
+{
+    TAG *p;
+    if (a)
+    {
+        for (p = a->filho; p != NULL; p = p->irmao)
+            printf("---");
+        printf("%d\n", a->cod);
+        imprime_bonito(a->filho);
+        imprime_bonito(a->irmao);
+    }
+}
+
+int busca(TAG *a, int cod);
+
+void libera_destroi(TAG *a);

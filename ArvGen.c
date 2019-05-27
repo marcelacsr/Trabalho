@@ -31,6 +31,8 @@ int main(void)
 
     printf("\n!!!\nPOS:\n");
     imprime_pos(a);
+    printf("\n!!!\nArvore:\n");
+    imprime_bonito(a);
 
     return 0;
 }
