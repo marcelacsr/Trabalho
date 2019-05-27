@@ -25,13 +25,14 @@ typedef struct info
     void *info;
 } TNO;
 
-TAG * inicializa (void){
+TAG *inicializa(void)
+{
     return NULL;
 }
 
-TAG * cria (int cod)
+TAG *cria(int cod)
 {
-    TAG *a = (TAG*)malloc(sizeof(TAG));
+    TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
     //a->info = ;
     a->filho = NULL;
@@ -41,7 +42,7 @@ TAG * cria (int cod)
 
 /* insere uma nova sub-árvore como filha de um dado,
 sempre no início da lista, por simplicidade */
-void insere (TAG *a, TAG *sa)
+void insere(TAG *a, TAG *sa)
 {
     sa->irmao = a->filho;
     a->filho = sa;
@@ -49,13 +50,34 @@ void insere (TAG *a, TAG *sa)
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores
-void imprime (TAG *a)
+void imprime(TAG *a)
 {
     TAG *p;
     printf("<%d\n", a->cod);
-    for (p = a->filho; p != NULL; p = p->irmao) {
+    for (p = a->filho; p != NULL; p = p->irmao)
+    {
         //printf(".");
         imprime(p); /* imprime filhos */
     }
     printf(">");
+}
+
+void imprime_pre(TAG *a)
+{
+    if (a)
+    {
+        printf("%d\n", a->cod);
+        imprime_pre(a->irmao);
+        imprime_pre(a->filho);
+    }
+}
+
+void imprime_pos(TAG *a)
+{
+    if (a)
+    {
+        imprime_pos(a->irmao);
+        printf("%d\n", a->cod);
+        imprime_pos(a->filho);
+    }
 }

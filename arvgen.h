@@ -19,6 +19,8 @@ int busca (TAG *a, int cod);
 
 //b 
 void imprime (TAG *a);
+void imprime_pre (TAG *a);
+void imprime_pos (TAG *a);
 
 //c
 void insere (TAG *a, TAG *sa);
