@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    TAG *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
+    TNO *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
     //cria nos como folhas
     a = cria(1);
     b = cria(2);
@@ -35,12 +35,15 @@ int main(void)
     printf("\n!!!\nArvore:\n");
     imprime_bonito(a);
 
-    TAG *p = busca(a, 8);
+    TNO *p = busca(a, 8);
     imprime(p);
-
-    printf("\n%d", busca2(a, 9)); //n existe
+    
     printf("\n%d", busca2(a, 1)); //existe
-
+    
+    printf("\n%p", a); //n existe
+    libera_destroi(a);
+    imprime(a);
+    printf("\n%p", a); //n existe
     printf("\n");
     return 0;
 }

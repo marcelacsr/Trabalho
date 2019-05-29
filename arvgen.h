@@ -11,26 +11,26 @@ typedef struct ag TAG;
 (e) destruir a árvore; e ok
 (f) alterar as dimensões de figuras;  */
 
-TAG * inicializa (void);
-TAG * cria (int cod);
+TNO * inicializa (void);
+TNO * cria (int cod);
 
 //a
-TAG *busca (TAG *a, int cod);
-int busca2 (TAG *a, int cod);
+TNO *busca (TNO *a, int cod);
+int busca2 (TNO *a, int cod);
 
 //b 
-void imprime (TAG *a);
-void imprime_pre (TAG *a);
-void imprime_pos (TAG *a);
+void imprime (TNO *a);
+void imprime_pre (TNO *a);
+void imprime_pos (TNO *a);
 
 //c
-void insere (TAG *a, TAG *sa);
+void insere (TNO *a, TNO *sa);
 
 //d TODO
-void retira_figuras (TAG *a, int cod);
+void retira_figuras (TNO *a, int cod);
 
 //e
-void libera_destroi (TAG *a);
+void libera_destroi (TNO *a);
 
 //f TODO
-void altera_dimensoes (TAG *a, int cod);
+void altera_dimensoes (TNO *a, int cod);

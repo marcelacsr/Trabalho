@@ -57,3 +57,12 @@ TTRA* criar_trapezio(float base_menor, float base_maior, float altura){
 	novo->altura = altura;
 	return novo;
 }
+
+
+/*
+Impressão: Imprimir atritutos e área
+*/
+void imprime_quadrado(void* elem){
+	TQUA* p = (TQUA*)elem;
+	printf("Este é um tipo Quadrado \nLado: %.2f - Área: %.2f\n", p->lado, p->lado*p->lado);
+}

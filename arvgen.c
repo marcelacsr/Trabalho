@@ -1,4 +1,5 @@
 #include "arvgen.h"
+#include "figuras.c"
 
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
@@ -10,28 +11,26 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
-typedef struct ag
-{
-    int cod;
-    //struct info *no;
-    struct ag *filho; /* ponteiro para eventual primeiro filho */
-    struct ag *irmao; /* ponteiro para eventual irmão */
+typedef struct ag{
+    struct ini *no;
 } TAG;
 
-typedef struct info
-{
+typedef struct no{
+    int cod;
     int tipo;
     void *info;
-} TNO;
+    struct ag *filho; /* ponteiro para eventual primeiro filho */
+    struct ag *irmao; /* ponteiro para eventual irmão */
+}TNO;
 
-TAG *inicializa(void)
+TNO *inicializa(void)
 {
     return NULL;
 }
 
-TAG *cria(int cod)
+TNO *cria(int cod)
 {
-    TAG *a = (TAG *)malloc(sizeof(TAG));
+    TNO *a = (TNO *)malloc(sizeof(TNO));
     a->cod = cod;
     //a->info = ;
     a->filho = NULL;
@@ -41,7 +40,7 @@ TAG *cria(int cod)
 
 /* insere uma nova sub-árvore como filha de um dado,
 sempre no início da lista, por simplicidade */
-void insere(TAG *a, TAG *sa)
+void insere(TNO *a, TNO *sa)
 {
     sa->irmao = a->filho;
     a->filho = sa;
@@ -49,9 +48,9 @@ void insere(TAG *a, TAG *sa)
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores
-void imprime(TAG *a)
+void imprime(TNO *a)
 {
-    TAG *p;
+    TNO *p;
     printf("<%d\n", a->cod);
     for (p = a->filho; p != NULL; p = p->irmao)
     {
@@ -61,7 +60,7 @@ void imprime(TAG *a)
     printf(">");
 }
 
-void imprime_pre(TAG *a)
+void imprime_pre(TNO *a)
 {
     if (a)
     {
@@ -71,7 +70,7 @@ void imprime_pre(TAG *a)
     }
 }
 
-void imprime_pos(TAG *a)
+void imprime_pos(TNO *a)
 {
     if (a)
     {
@@ -81,9 +80,9 @@ void imprime_pos(TAG *a)
     }
 }
 
-void imprime_bonito(TAG *a)
+void imprime_bonito(TNO *a)
 {
-    TAG *p;
+    TNO *p;
     if (a)
     {
         for (p = a->filho; p != NULL; p = p->irmao)
@@ -95,21 +94,21 @@ void imprime_bonito(TAG *a)
 }
 
 //todo dando segment fault quando n existe
-TAG *busca(TAG *a, int cod)
+TNO *busca(TNO *a, int cod)
 {
     if (!a)
         return NULL;
     if (a->cod == cod)
         return a;
-    TAG *irmao = busca(a->irmao, cod);
+    TNO *irmao = busca(a->irmao, cod);
     if (irmao)
         return irmao;
     return busca(a->filho, cod);
 }
 
-int busca2(TAG *a, int cod)
+int busca2(TNO *a, int cod)
 {
-    TAG *p;
+    TNO *p;
     if (a->cod == cod)
         return 1;
     else
@@ -123,7 +122,7 @@ int busca2(TAG *a, int cod)
     return 0;
 }
 
-void libera_destroi(TAG *a)
+void libera_destroi(TNO *a)
 {
     if (a)
     {
@@ -131,4 +130,19 @@ void libera_destroi(TAG *a)
         libera_destroi(a->filho);
         free(a);
     }
+}
+
+
+/*
+CIRCULO
+QUADRADO 
+RETANGULO
+TRAPEZIO 
+TRIANGULO
+*/
+void imprime_no(TNO* elem){
+	printf("Cód: %d\n", elem->cod);
+	if(elem->tipo == 1){
+		imprime_quadrado(elem->info);
+	}
 }
