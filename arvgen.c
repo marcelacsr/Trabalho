@@ -28,7 +28,6 @@ TAG *inicializa(void)
 TAG *cria(int cod, int cod_pai){
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
-
     a->cod_pai = cod_pai;
     a->info = NULL;
     a->filho = NULL;
@@ -233,5 +232,5 @@ TAG *le_arquivo(TAG *a, char *caminho){
         printf("Arquivo não encontrado\n");
     }
     // TODO arrumar este return
-    //return t;
+    return a;
 }

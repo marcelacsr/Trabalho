@@ -3,7 +3,7 @@
 
 int main(void)
 {
-    TNO *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
+    TAG *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
     //cria nos como folhas
 /*     a = cria(1);
     b = cria(2);
