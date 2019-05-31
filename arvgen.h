@@ -38,3 +38,9 @@ void libera_destroi (TAG *a);
 void altera_dimensoes (TAG *a, int cod);
 
 TAG* le_arquivo(TAG *t, char* path);
+
+void imprime_circulo(void* elem);
+void imprime_quadrado(void* elem);
+void imprime_retangulo(void* elem);
+void imprime_trapezio(void* elem);
+void imprime_triangulo(void* elem);

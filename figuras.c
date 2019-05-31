@@ -62,7 +62,29 @@ TTRA* criar_trapezio(float base_menor, float base_maior, float altura){
 /*
 Impressão: Imprimir atritutos e área
 */
+void imprime_circulo(void* elem){
+	TCIR* p = (TCIR*)elem;
+	printf("Este é um tipo Círculo \nRaio: %.2f - Área: %.2f\n\n", p->raio);
+}
+
 void imprime_quadrado(void* elem){
 	TQUA* p = (TQUA*)elem;
 	printf("Este é um tipo Quadrado \nLado: %.2f - Área: %.2f\n", p->lado, p->lado*p->lado);
 }
+
+void imprime_retangulo(void* elem){
+	TRET* p = (TRET*)elem;
+	printf("Este é um tipo Retangulo \nBase: %.2f - Altura: %.2f - Área: %.2f\n", p->base, p->altura);
+}
+
+void imprime_trapezio(void* elem){
+	TTRA* p = (TTRA*)elem;
+	printf("Este é um tipo Trapezio \nBase Menor: %.2f - Base Maior: %.2f - Altura: %.2f - Área: %.2f\n",
+	p->base_maior, p->base_menor,p->altura);
+}
+
+void imprime_triangulo(void* elem){
+	TTRI* p = (TTRI*)elem;
+	printf("Este é um tipo Triangulo \nBase: %.2f - Altura: %.2f - Área: %.2f\n", p->base, p->altura);
+}
+
