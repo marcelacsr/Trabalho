@@ -11,27 +11,31 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
-typedef struct ag{
+typedef struct ag
+{
     struct ini *no;
 } TAG;
 
-typedef struct no{
+typedef struct no
+{
     int cod;
+    int cod_pai;
     int tipo;
     void *info;
     struct ag *filho; /* ponteiro para eventual primeiro filho */
     struct ag *irmao; /* ponteiro para eventual irmão */
-}TNO;
+} TNO;
 
 TNO *inicializa(void)
 {
     return NULL;
 }
 
-TNO *cria(int cod)
+TNO *cria(int cod, int cod_pai)
 {
     TNO *a = (TNO *)malloc(sizeof(TNO));
     a->cod = cod;
+    a->cod_pai = cod_pai;
     //a->info = ;
     a->filho = NULL;
     a->irmao = NULL;
@@ -40,6 +44,7 @@ TNO *cria(int cod)
 
 /* insere uma nova sub-árvore como filha de um dado,
 sempre no início da lista, por simplicidade */
+//TODO verificar se o elemento(cod) já existe primeiro
 void insere(TNO *a, TNO *sa)
 {
     sa->irmao = a->filho;
@@ -109,7 +114,7 @@ TNO *busca(TNO *a, int cod)
 int busca2(TNO *a, int cod)
 {
     TNO *p;
-    if (a->cod == cod)
+    if (a->cod == cod) //encontrou, retorna 1
         return 1;
     else
     {
@@ -119,7 +124,7 @@ int busca2(TNO *a, int cod)
                 return 1;
         }
     }
-    return 0;
+    return 0; //retorna 0, nao encontrou
 }
 
 void libera_destroi(TNO *a)
@@ -132,7 +137,6 @@ void libera_destroi(TNO *a)
     }
 }
 
-
 /*
 CIRCULO
 QUADRADO 
@@ -140,9 +144,89 @@ RETANGULO
 TRAPEZIO 
 TRIANGULO
 */
-void imprime_no(TNO* elem){
-	printf("Cód: %d\n", elem->cod);
-	if(elem->tipo == 1){
-		imprime_quadrado(elem->info);
-	}
+void imprime_no(TNO *elem)
+{
+    printf("Cód: %d\n", elem->cod);
+    if (elem->tipo == 1)
+    {
+        imprime_quadrado(elem->info);
+    }
+}
+//TODO: testar
+TNO *insere_cria(TNO *a, int cod, int cod_pai)
+//TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
+{
+    if (busca2(a, cod) == 1) //verifica se o cod existe
+    { /
+        printf("Cod ja existe!\n");
+        return a; // não insere
+    }
+    if (busca2(a, cod_pai) == 0) //verifica se cod_pai existe
+    {
+        printf("Nao encontrou cod_pai");
+        return a; //não insere
+    }
+    TNO *novo_no_filho = cria(cod, cod_pai);
+    if (cod_pai == 0) // é raiz!
+    {
+        novo_no_filho->cod_pai = cod_pai;
+        if (a) //se for o primeiro elemento, a n existe??? pq a foi inicializado com NULL
+        {
+            a->cod_pai = novo_no_filho->cod;
+            novo_no_filho->filho = a;
+        }
+        return novo_no_filho;
+    }
+    TNO *pai = busca(a, cod_pai); //Busca o nó pai
+    if (pai->filho != NULL)//se o nó pai tem filho
+    {
+        a->irmao = pai->filho;
+        a->filho = pai->filho->filho;
+        pai->filho = novo_no_filho;
+    } else
+    {
+        pai->filho = novo_no_filho;
+    }
+    return a;    
+}
+
+//Leitura de arquivo
+/*
+1/0/TRI 3 2
+2/1/RET 3 3
+3/1/TRA 2 3 4
+4/1/CIR 4
+5/4/QUA 3
+6/2/RET 2 2
+7/5/TRA 1 2 3
+8/5/CIR 2
+9/4/QUA 1
+10/1/TRI 1 2
+*/
+
+//testar
+TNO *le_arquivo(TNO *a, char *caminho)
+{
+    int n = 25;
+    char linha[n];
+
+    FILE *arquivo = fopen(caminho, "r");
+    if (arquivo)
+    {
+        while (fgets(linha, n, arquivo) != NULL)
+        {
+            int cod = atoi(strtok(linha, "/"));
+            int cod_pai = atoi(strtok(NULL, "/"));
+            char *figura = strtok(NULL, "");
+            printf("%d %d %s\n", cod, cod_pai, figura);
+
+            a = insere_cria(a, cod, cod_pai);
+        }
+        fclose(arquivo);
+    }
+    else
+    {
+        printf("Arquivo não encontrado\n");
+    }
+    return t;
 }
