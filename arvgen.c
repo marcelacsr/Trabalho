@@ -13,6 +13,7 @@
 
 typedef struct ag{
     int cod;
+    int cod_pai;
     int tipo;
     void *info;
     struct ag *filho; /* ponteiro para eventual primeiro filho */
@@ -24,10 +25,11 @@ TAG *inicializa(void)
     return NULL;
 }
 
-TAG *cria(int cod)
-{
+TAG *cria(int cod, int cod_pai){
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
+
+    a->cod_pai = cod_pai;
     a->info = NULL;
     a->filho = NULL;
     a->irmao = NULL;
@@ -36,7 +38,9 @@ TAG *cria(int cod)
 
 /* insere uma nova sub-árvore como filha de um dado,
 sempre no início da lista, por simplicidade */
+
 void insere(TAG *a, TAG *sa)
+//TODO verificar se o elemento(cod) já existe primeiro
 {
     sa->irmao = a->filho;
     a->filho = sa;
@@ -105,7 +109,7 @@ TAG *busca(TAG *a, int cod)
 int busca2(TAG *a, int cod)
 {
     TAG *p;
-    if (a->cod == cod)
+    if (a->cod == cod) //encontrou, retorna 1
         return 1;
     else
     {
@@ -115,7 +119,7 @@ int busca2(TAG *a, int cod)
                 return 1;
         }
     }
-    return 0;
+    return 0; //retorna 0, nao encontrou
 }
 
 void libera_destroi(TAG *a)
@@ -127,7 +131,6 @@ void libera_destroi(TAG *a)
         free(a);
     }
 }
-
 
 /*
 CIRCULO
@@ -153,4 +156,82 @@ void imprime_no(TAG* elem){
     if(elem->tipo == 5){
 		imprime_triangulo(elem->info);
 	}
+}
+
+//TODO: testar
+//TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
+TAG *insere_cria(TAG *a, int cod, int cod_pai){
+    if (busca2(a, cod) == 1) //verifica se o cod existe
+    {
+        printf("Cod ja existe!\n");
+        return a; // não insere
+    }
+    if (busca2(a, cod_pai) == 0) //verifica se cod_pai existe
+    {
+        printf("Nao encontrou cod_pai");
+        return a; //não insere
+    }
+    TAG *novo_no_filho = cria(cod, cod_pai);
+    if (cod_pai == 0) // é raiz!
+    {
+        novo_no_filho->cod_pai = cod_pai;
+        if (a) //se for o primeiro elemento, a n existe??? pq a foi inicializado com NULL
+        {
+            a->cod_pai = novo_no_filho->cod;
+            novo_no_filho->filho = a;
+        }
+        return novo_no_filho;
+    }
+    TAG *pai = busca(a, cod_pai); //Busca o nó pai
+    if (pai->filho != NULL)//se o nó pai tem filho
+    {
+        a->irmao = pai->filho;
+        a->filho = pai->filho->filho;
+        pai->filho = novo_no_filho;
+    } else
+    {
+        pai->filho = novo_no_filho;
+    }
+    return a;    
+}
+
+//Leitura de arquivo
+/*
+1/0/TRI 3 2
+2/1/RET 3 3
+3/1/TRA 2 3 4
+4/1/CIR 4
+5/4/QUA 3
+6/2/RET 2 2
+7/5/TRA 1 2 3
+8/5/CIR 2
+9/4/QUA 1
+10/1/TRI 1 2
+*/
+
+//testar
+TAG *le_arquivo(TAG *a, char *caminho){
+    int n = 25;
+    char linha[n];
+
+    FILE *arquivo = fopen(caminho, "r");
+    if (arquivo)
+    {
+        while (fgets(linha, n, arquivo) != NULL)
+        {
+            int cod = atoi(strtok(linha, "/"));
+            int cod_pai = atoi(strtok(NULL, "/"));
+            char *figura = strtok(NULL, "");
+            printf("%d %d %s\n", cod, cod_pai, figura);
+
+            a = insere_cria(a, cod, cod_pai);
+        }
+        fclose(arquivo);
+    }
+    else
+    {
+        printf("Arquivo não encontrado\n");
+    }
+    // TODO arrumar este return
+    //return t;
 }

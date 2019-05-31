@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 typedef struct ag TAG;
+typedef struct no TNO;
 
 /* deve ser permitido ao usuário do sistema: 
 (a) buscar figuras geométricas, por meio de um código único;  ok
@@ -11,26 +12,29 @@ typedef struct ag TAG;
 (e) destruir a árvore; e ok
 (f) alterar as dimensões de figuras;  */
 
-TNO * inicializa (void);
-TNO * cria (int cod);
+TAG *inicializa (void);
+TAG *cria (int cod, int cod_pai);
 
+TAG *insere_cria(TAG *a, int cod, int cod_pai);
 //a
-TNO *busca (TNO *a, int cod);
-int busca2 (TNO *a, int cod);
+TAG *busca (TAG *a, int cod);
+int busca2 (TAG *a, int cod);
 
 //b 
-void imprime (TNO *a);
-void imprime_pre (TNO *a);
-void imprime_pos (TNO *a);
+void imprime (TAG *a);
+void imprime_pre (TAG *a);
+void imprime_pos (TAG *a);
 
 //c
-void insere (TNO *a, TNO *sa);
+void insere (TAG *filho, TAG *pai);
 
 //d TODO
-void retira_figuras (TNO *a, int cod);
+void retira_figuras (TAG *a, int cod);
 
 //e
-void libera_destroi (TNO *a);
+void libera_destroi (TAG *a);
 
 //f TODO
-void altera_dimensoes (TNO *a, int cod);
+void altera_dimensoes (TAG *a, int cod);
+
+TAG* le_arquivo(TAG *t, char* path);
