@@ -158,7 +158,7 @@ void imprime_no(TAG* elem){
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
-TAG *insere_cria(TAG *a, int cod, int cod_pai, void *elem){
+TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
     if(!a){
         printf("Árvore n existe\n");
         if(cod_pai !=0) printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");

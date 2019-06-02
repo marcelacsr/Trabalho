@@ -15,7 +15,7 @@ typedef struct no TNO;
 TAG *inicializa (void);
 TAG *cria (int cod, int cod_pai, void* elem);
 
-TAG *insere_cria(TAG *a, int cod, int cod_pai, void *elem);
+TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem);
 //a
 TAG *busca (TAG *a, int cod);
 int busca2 (TAG *a, int cod);
