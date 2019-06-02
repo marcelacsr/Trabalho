@@ -1,11 +1,9 @@
-#include "arvgen.h"
-#include "arvgen.c"
 #include "le_arquivo.c"
 
 int main(void)
 {
-    TAG *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
-    read_arquivo();
+    TAG *a = inicializa();
+    read_arquivo(a);
 //     //cria nos como folhas
 // /*     a = cria(1);
 //     b = cria(2);

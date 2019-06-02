@@ -24,11 +24,11 @@ TAG *inicializa(void)
     return NULL;
 }
 
-TAG *cria(int cod, int cod_pai){
+TAG *cria(int cod, int cod_pai, void* elem){
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
     a->cod_pai = cod_pai;
-    a->info = NULL;
+    a->info = elem;
     a->filho = NULL;
     a->irmao = NULL;
     return a;
@@ -158,36 +158,39 @@ void imprime_no(TAG* elem){
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
-TAG *insere_cria(TAG *a, int cod, int cod_pai){
-    if (busca2(a, cod) == 1) //verifica se o cod existe
-    {
+TAG *insere_cria(TAG *a, int cod, int cod_pai, void *elem){
+     //verifica se o cod existe
+    if (busca2(a, cod) == 1){
         printf("Cod ja existe!\n");
         return a; // não insere
     }
-    if (busca2(a, cod_pai) == 0) //verifica se cod_pai existe
-    {
+
+    //verifica se cod_pai existe
+    if (busca2(a, cod_pai) == 0){
         printf("Nao encontrou cod_pai");
         return a; //não insere
     }
-    TAG *novo_no_filho = cria(cod, cod_pai);
-    if (cod_pai == 0) // é raiz!
-    {
+    TAG *novo_no_filho = cria(cod, cod_pai, elem);
+
+    // é raiz!
+    if (cod_pai == 0){
         novo_no_filho->cod_pai = cod_pai;
-        if (a) //se for o primeiro elemento, a n existe??? pq a foi inicializado com NULL
-        {
+
+        //se for o primeiro elemento, a n existe??? pq a foi inicializado com NULL
+        if (a){
             a->cod_pai = novo_no_filho->cod;
             novo_no_filho->filho = a;
         }
         return novo_no_filho;
     }
     TAG *pai = busca(a, cod_pai); //Busca o nó pai
-    if (pai->filho != NULL)//se o nó pai tem filho
-    {
+
+    //se o nó pai tem filho
+    if (pai->filho != NULL){
         a->irmao = pai->filho;
         a->filho = pai->filho->filho;
         pai->filho = novo_no_filho;
-    } else
-    {
+    } else {
         pai->filho = novo_no_filho;
     }
     return a;    

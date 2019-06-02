@@ -1,4 +1,6 @@
 #include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 #define PI 3.14
 
 typedef struct triangulo {
