@@ -56,5 +56,5 @@ TAG* read_arquivo(TAG* arv){
         }
         arv = insere_cria(arv, a, b, tipo, fig);
     }
-    return;
+    return arv;
 }
