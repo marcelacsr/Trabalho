@@ -209,28 +209,28 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai){
 */
 
 //testar
-TAG *le_arquivo(TAG *a, char *caminho){
-    int n = 25;
-    char linha[n];
+// TAG *le_arquivo(TAG *a, char *caminho){
+//     int n = 25;
+//     char linha[n];
 
-    FILE *arquivo = fopen(caminho, "r");
-    if (arquivo)
-    {
-        while (fgets(linha, n, arquivo) != NULL)
-        {
-            int cod = atoi(strtok(linha, "/"));
-            int cod_pai = atoi(strtok(NULL, "/"));
-            char *figura = strtok(NULL, "");
-            printf("%d %d %s\n", cod, cod_pai, figura);
+//     FILE *arquivo = fopen(caminho, "r");
+//     if (arquivo)
+//     {
+//         while (fgets(linha, n, arquivo) != NULL)
+//         {
+//             int cod = atoi(strtok(linha, "/"));
+//             int cod_pai = atoi(strtok(NULL, "/"));
+//             char *figura = strtok(NULL, "");
+//             printf("%d %d %s\n", cod, cod_pai, figura);
 
-            a = insere_cria(a, cod, cod_pai);
-        }
-        fclose(arquivo);
-    }
-    else
-    {
-        printf("Arquivo não encontrado\n");
-    }
-    // TODO arrumar este return
-    return a;
-}
+//             a = insere_cria(a, cod, cod_pai);
+//         }
+//         fclose(arquivo);
+//     }
+//     else
+//     {
+//         printf("Arquivo não encontrado\n");
+//     }
+//     // TODO arrumar este return
+//     return a;
+// }
