@@ -1,5 +1,4 @@
 #include "arvgen.h"
-#include "figuras.c"
 
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
