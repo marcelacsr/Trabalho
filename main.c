@@ -1,8 +1,10 @@
 #include "arvgen.h"
 #include "arvgen.c"
+#include "menu.c"
 
 int main(void)
 {
+    menu();
     TAG *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
     //cria nos como folhas
 /*     a = cria(1);
@@ -23,31 +25,31 @@ int main(void)
     // insere(a, f);
     // insere(a, b);
 
-    printf("\n!!!\nArvore:\n");
-    //imprime(a);
-    // funciona ok! libera_destroi(a);
+    // printf("\n!!!\nArvore:\n");
+    // //imprime(a);
+    // // funciona ok! libera_destroi(a);
 
-    printf("\n!!!\nPRE:\n");
-    //imprime_pre(a);
+    // printf("\n!!!\nPRE:\n");
+    // //imprime_pre(a);
 
-    printf("\n!!!\nPOS:\n");
-    //imprime_pos(a);
-    printf("\n!!!\nArvore:\n");
-    //imprime_bonito(a);
+    // printf("\n!!!\nPOS:\n");
+    // //imprime_pos(a);
+    // printf("\n!!!\nArvore:\n");
+    // //imprime_bonito(a);
 
-    char path[100];
-    scanf("%s", path);
-    a = le_arquivo(a, path);    
-    imprime(a);
-    //TNO *p = busca(a, 8);
-    //imprime(p);
+    // char path[100];
+    // scanf("%s", path);
+    // a = le_arquivo(a, path);    
+    // imprime(a);
+    // //TNO *p = busca(a, 8);
+    // //imprime(p);
 
-    printf("\n%d", busca2(a, 1)); //existe
+    // printf("\n%d", busca2(a, 1)); //existe
 
-    printf("\n%p", a); //n existe
-    libera_destroi(a);
-    imprime(a);
-    printf("\n%p", a); //n existe
-    printf("\n");
+    // printf("\n%p", a); //n existe
+    // libera_destroi(a);
+    // imprime(a);
+    // printf("\n%p", a); //n existe
+    // printf("\n");
     return 0;
 }
