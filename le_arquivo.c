@@ -6,7 +6,7 @@
 #include "arvgen.c"
 
 
-void read_arquivo(TAG* arv){
+TAG* read_arquivo(TAG* arv){
     while(1){
         int a = 0, b = 0;
         char fig[4];
@@ -49,7 +49,7 @@ void read_arquivo(TAG* arv){
             figura = (void *)cria_quadrado(lado);
             imprime_quadrado(figura);
         }
-        insere_cria(arv, a, b, fig);
+        arv = insere_cria(arv, a, b, fig);
     }
     return;
 }
