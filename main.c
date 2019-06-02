@@ -1,6 +1,7 @@
 #include "arvgen.h"
 #include "arvgen.c"
 #include "le_arquivo.c"
+
 int main(void)
 {
     TAG *a, *b, *d, *c, *e, *f, *g, *h = inicializa();
