@@ -104,7 +104,7 @@ TAG *busca(TAG *a, int cod)
     return busca(a->filho, cod);
 }
 
-int busca2(TAG *a, int cod)
+int busca2(TAG *a, int cod) 
 {
     TAG *p;
     if (a->cod == cod) //encontrou, retorna 1
@@ -159,6 +159,13 @@ void imprime_no(TAG* elem){
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
 TAG *insere_cria(TAG *a, int cod, int cod_pai, void *elem){
+    if(!a){
+        printf("Árvore n existe\n");
+        if(cod_pai !=0) printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
+        else a = cria(cod, cod_pai, elem);
+        return a;
+    }
+    printf("*** Entrou no insere ***\n");
      //verifica se o cod existe
     if (busca2(a, cod) == 1){
         printf("Cod ja existe!\n");
@@ -167,9 +174,10 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, void *elem){
 
     //verifica se cod_pai existe
     if (busca2(a, cod_pai) == 0){
-        printf("Nao encontrou cod_pai");
+        printf("Nao encontrou cod_pai\n");
         return a; //não insere
     }
+    printf("*** Antes de criar o novo nó ***\n");
     TAG *novo_no_filho = cria(cod, cod_pai, elem);
 
     // é raiz!
