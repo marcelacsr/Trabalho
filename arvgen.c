@@ -46,8 +46,8 @@ void insere(TAG *a, TAG *sa)
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores
-void imprime(TAG *a)
-{
+void imprime(TAG *a){
+    if(!a) return;
     TAG *p;
     printf("<%d\n", a->cod);
     for (p = a->filho; p != NULL; p = p->irmao)
