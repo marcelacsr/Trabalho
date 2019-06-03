@@ -13,7 +13,7 @@ typedef struct no TNO;
 (f) alterar as dimensões de figuras;  */
 
 TAG *inicializa (void);
-TAG *cria (int cod, int cod_pai, void* elem);
+TAG *cria (int cod, int cod_pai,int tipo, void* elem);
 
 TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem);
 //a
@@ -24,7 +24,7 @@ int busca2 (TAG *a, int cod);
 void imprime (TAG *a);
 void imprime_pre (TAG *a);
 void imprime_pos (TAG *a);
-
+void imprime_recursivo(TAG *a);
 //c
 void insere (TAG *filho, TAG *pai);
 

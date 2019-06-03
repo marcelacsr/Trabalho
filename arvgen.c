@@ -24,10 +24,11 @@ TAG *inicializa(void)
     return NULL;
 }
 
-TAG *cria(int cod, int cod_pai, void* elem){
+TAG *cria(int cod, int cod_pai,int tipo, void* elem){
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
     a->cod_pai = cod_pai;
+    a->tipo = tipo;
     a->info = elem;
     a->filho = NULL;
     a->irmao = NULL;
@@ -57,6 +58,28 @@ void imprime(TAG *a){
     }
     printf(">");
 }
+
+
+void imprime_recursivo(TAG *a) {
+    if (!a) {
+        printf(("<>"));
+    } else {
+        if ((!a->filho)&&(!a->irmao)) {
+            printf("<");
+            printf("%d ",a->cod);
+            printf(">");
+        } else {
+            printf("<");
+            printf("%d ",a->cod);
+            imprime(a->irmao);
+            imprime(a->filho);
+            printf(">");
+        }
+    }
+}
+
+
+
 
 void imprime_pre(TAG *a)
 {

@@ -6,6 +6,7 @@ int main(void)
     printf("lendo arquivo \n");
     a = read_arquivo(a);
     printf("arquivo lido\n preparando impressão\n");
-    imprime(a);
+    imprime2(a);
+    printf("\n");
     return 0;
 }
