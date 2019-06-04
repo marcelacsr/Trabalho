@@ -144,6 +144,28 @@ int busca2(TAG *a, int cod)
     }
     return 0; //retorna 0, nao encontrou
 }
+// Separar em um metodo que associa um filho a um pai
+// E um que associa um filho a um irmão
+void retira_figuras (TAG *a, int cod){
+    TAG *r = busca(a,cod); //encontrou o elemento    
+    if (r == NULL){
+        prinft("Elemento não encontrado!");
+        return r;
+    }
+    TAG *pai = busca(r, r->cod_pai); //encontrar o pai do elemento que quer remover
+    TAG *ult_filhos = r->filho; //os filhos do elemento que quer remover
+    
+    while(ult_filhos->irmao != NULL){ //percorrer até o final        
+        ult_filhos->cod_pai = r->cod_pai; //muda o cod_pai dos filhos de r
+        filhos = ult_filhos->irmao; //coloca o ponteiro no final da lista de irmãos do filho (no ultimo filho)
+    }
+    ult_filhos->irmao = r->irmao; //faz faz ultimo filho apontar para irmao do pai que foi removido
+    pai->filho = r->filho; // pai aponta para novo filho   
+    
+    return a;
+
+    //TODO: remover um irmão do meio da lista de irmãos
+}
 
 void libera_destroi(TAG *a)
 {
