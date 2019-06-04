@@ -29,7 +29,7 @@ void imprime_recursivo(TAG *a);
 void insere (TAG *filho, TAG *pai);
 
 //d TODO
-void retira_figuras (TAG *a, int cod);
+TAG *retira_figuras (TAG *a, int cod);
 
 //e
 void libera_destroi (TAG *a);

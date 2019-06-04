@@ -146,25 +146,89 @@ int busca2(TAG *a, int cod)
 }
 // Separar em um metodo que associa um filho a um pai
 // E um que associa um filho a um irmão
-void retira_figuras (TAG *a, int cod){
-    TAG *r = busca(a,cod); //encontrou o elemento    
+// Remove uma figura da arvore, através do seu codigo
+TAG *retira_figuras (TAG *a, int cod){
+    TAG *r = busca(a,cod); //encontrou o elemento 
+    printf("if (r == NULL)\n");
     if (r == NULL){
-        prinft("Elemento não encontrado!");
-        return r;
+        printf("Elemento não encontrado!\n");
+        return r; //NULL
     }
-    TAG *pai = busca(r, r->cod_pai); //encontrar o pai do elemento que quer remover
-    TAG *ult_filhos = r->filho; //os filhos do elemento que quer remover
-    
-    while(ult_filhos->irmao != NULL){ //percorrer até o final        
-        ult_filhos->cod_pai = r->cod_pai; //muda o cod_pai dos filhos de r
-        filhos = ult_filhos->irmao; //coloca o ponteiro no final da lista de irmãos do filho (no ultimo filho)
+    if (r->cod_pai == 0) {
+        printf("Elemento é RAIZ, não pode ser removido!\n");
+        return a;
     }
-    ult_filhos->irmao = r->irmao; //faz faz ultimo filho apontar para irmao do pai que foi removido
-    pai->filho = r->filho; // pai aponta para novo filho   
-    free(r);
-    return a;
+    printf("Removendo o elemento de código: %d\n", cod);    
+    printf("TAG *pai = busca(r, r->cod_pai): %d\n", r->cod_pai);
+    TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover    
 
-    //TODO: remover um irmão do meio da lista de irmãos
+    TAG *atual = pai->filho;
+    TAG *ant = NULL;
+    //printf("TAG *ult_filhos = r->filho\n");
+    while((atual->irmao) && (atual->cod != cod)){
+        //TODO
+        ant = atual;
+        atual = atual->irmao;
+        printf("busca no na lista de irmaos");
+    }
+    printf("\n\n");
+    // nao é o primeiro filho da lista de filhos && r não tem filhos
+    if ((ant!=NULL)&&(r->filho == NULL)){ 
+        ant->irmao = atual->irmao;
+        free(r);
+        return a;
+    }
+    // é o primeiro filho da lista de filhos && r não tem filhos
+    if ((ant==NULL)&&(r->filho == NULL)){ 
+        pai->filho = r->irmao;
+        free(r);
+        return a;
+    }
+    // é o primeiro filho da lista de filhos && r tem filhos
+    if ((ant==NULL)&&(r->filho != NULL)){
+        pai->filho = r->irmao;
+        TAG *ult = r->filho;         
+        //percorre até encontrar o ultimo filho do pai
+        while(ult->irmao){            
+            //altera o cod_pai
+            printf("antigo: %d \n", ult->cod_pai);
+            ult->cod_pai = pai->filho->cod;
+            printf("cod do novo pai %d\n", ult->cod_pai);
+            ult=ult->irmao;
+        }
+        //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai  
+        ult->irmao = pai->filho->filho;
+        //faz o irmão do que sera removido, apontar para o primeiro filho do que foi removido
+        pai->filho->filho = r->filho;
+        free(r);
+        return a;
+    }
+    // esta no meio da lista de filhos e irmao esquerda não tem filhos
+    if(ant->filho == NULL) {
+        ant->irmao = atual->irmao;
+        ant->filho = atual->filho;
+        free(r);
+        return a;
+    }
+    if(ant->filho != NULL){
+        ant->irmao = atual->irmao;
+        TAG *ult = atual->filho;       
+    //percorre até encontrar o ultimo filho do pai
+        while(ult->irmao){
+        //altera o cod_pai
+            printf("antigo: %d \n", ult->cod_pai);
+            ult->cod_pai = ant->cod;
+            printf("cod do novo pai %d\n", ult->cod_pai);
+            ult=ult->irmao;
+        }
+    //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai  
+        ult->irmao = ant->filho;
+    //faz o irmão do que sera removido, apontar para o primeiro filho do que foi removido
+        ant->filho = atual->filho;
+        free(r);
+        return a;
+    }
+    return a;
 }
 
 void libera_destroi(TAG *a)

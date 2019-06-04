@@ -9,5 +9,15 @@ int main(void)
     imprime(a);
     
     printf("\n");
+
+    retira_figuras(a, 4);
+    retira_figuras(a, 9);
+    retira_figuras(a, 8);
+    imprime(a);
+    retira_figuras(a, 1);
+    retira_figuras(a, 9);
+    retira_figuras(a, 11);
+    imprime(a);
+
     return 0;
 }
