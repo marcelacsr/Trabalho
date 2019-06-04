@@ -55,7 +55,7 @@ TAG* read_arquivo(TAG* arv){
             tipo = 1;
             imprime_quadrado(figura);
         }
-        arv = insere_cria(arv, a, b, tipo, fig);
+        arv = insere_cria(arv, a, b, tipo, figura);
     }
     return arv;
 }
