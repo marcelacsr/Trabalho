@@ -25,6 +25,7 @@ TAG *inicializa(void)
 }
 
 TAG *cria(int cod, int cod_pai,int tipo, void* elem){
+    printf("Criando estrutura do cod: %d\n", cod);
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
     a->cod_pai = cod_pai;
@@ -129,6 +130,7 @@ TAG *busca(TAG *a, int cod)
 
 int busca2(TAG *a, int cod) 
 {
+    printf("buscando codigo... \n");
     TAG *p;
     if (a->cod == cod) //encontrou, retorna 1
         return 1;
@@ -181,11 +183,12 @@ void imprime_no(TAG* elem){
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
-TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
+ TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
     if(!a){
-        printf("Árvore n existe\n");
+        printf("Árvore não existe\n");
         if(cod_pai !=0) printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
-        else a = cria(cod, cod_pai, elem);
+        else { a = cria(cod, cod_pai, tipo, elem);
+        printf("Nó raiz criado!");}
         return a;
     }
     printf("*** Entrou no insere ***\n");
@@ -196,19 +199,22 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
     }
 
     //verifica se cod_pai existe
-    if (busca2(a, cod_pai) == 0){
+     if (busca2(a, cod_pai) == 0){
         printf("Nao encontrou cod_pai\n");
         return a; //não insere
     }
-    printf("*** Antes de criar o novo nó ***\n");
-    TAG *novo_no_filho = cria(cod, cod_pai, elem);
+    //TODO: verificar se quer inserir um cod = o cod_pai
+    //if cod == cod_pai não insere
 
-    // é raiz!
+    printf("*** Antes de criar o novo nó ***\n");
+    TAG *novo_no_filho = cria(cod, cod_pai, tipo, elem);
+    
+    // é raiz! Caso tentem inserir mais de uma raiz
     if (cod_pai == 0){
         novo_no_filho->cod_pai = cod_pai;
-
-        //se for o primeiro elemento, a n existe??? pq a foi inicializado com NULL
+        //se for o primeiro elemento, a nao existe??? pq a foi inicializado com NULL
         if (a){
+            printf("a existe");
             a->cod_pai = novo_no_filho->cod;
             novo_no_filho->filho = a;
         }
@@ -218,14 +224,18 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
 
     //se o nó pai tem filho
     if (pai->filho != NULL){
-        a->irmao = pai->filho;
-        a->filho = pai->filho->filho;
+        novo_no_filho->irmao = pai->filho;
+        //a->filho = pai->filho->filho;
         pai->filho = novo_no_filho;
     } else {
+        printf("\nfaz pai->filho apontar para novo_filho\n");
         pai->filho = novo_no_filho;
     }
+    printf("\nimprime arvore parcial\n");
+    imprime(a);
+    printf("\n");
     return a;    
-}
+} 
 
 //Leitura de arquivo
 /*
