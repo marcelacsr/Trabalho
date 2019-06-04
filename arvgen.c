@@ -192,6 +192,11 @@ void imprime_no(TAG* elem){
         return a;
     }
     printf("*** Entrou no insere ***\n");
+    //verifica se quer inserir um cod = o cod_pai
+    if (cod == cod_pai){
+        printf("Código do pai é igual ao código do filho\n");
+        return a; //não insere
+    }
      //verifica se o cod existe
     if (busca2(a, cod) == 1){
         printf("Cod ja existe!\n");
@@ -203,8 +208,6 @@ void imprime_no(TAG* elem){
         printf("Nao encontrou cod_pai\n");
         return a; //não insere
     }
-    //TODO: verificar se quer inserir um cod = o cod_pai
-    //if cod == cod_pai não insere
 
     printf("*** Antes de criar o novo nó ***\n");
     TAG *novo_no_filho = cria(cod, cod_pai, tipo, elem);
