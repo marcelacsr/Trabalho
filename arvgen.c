@@ -52,6 +52,7 @@ void imprime(TAG *a){
     if(!a) return;
     TAG *p;
     printf("<%d\n", a->cod);
+    visita_info(a->tipo,a->info);
     for (p = a->filho; p != NULL; p = p->irmao)
     {
         //printf(".");
@@ -240,43 +241,20 @@ void imprime_no(TAG* elem){
     return a;    
 } 
 
-//Leitura de arquivo
-/*
-1/0/TRI 3 2
-2/1/RET 3 3
-3/1/TRA 2 3 4
-4/1/CIR 4
-5/4/QUA 3
-6/2/RET 2 2
-7/5/TRA 1 2 3
-8/5/CIR 2
-9/4/QUA 1
-10/1/TRI 1 2
-*/
-
-//testar
-// TAG *le_arquivo(TAG *a, char *caminho){
-//     int n = 25;
-//     char linha[n];
-
-//     FILE *arquivo = fopen(caminho, "r");
-//     if (arquivo)
-//     {
-//         while (fgets(linha, n, arquivo) != NULL)
-//         {
-//             int cod = atoi(strtok(linha, "/"));
-//             int cod_pai = atoi(strtok(NULL, "/"));
-//             char *figura = strtok(NULL, "");
-//             printf("%d %d %s\n", cod, cod_pai, figura);
-
-//             a = insere_cria(a, cod, cod_pai);
-//         }
-//         fclose(arquivo);
-//     }
-//     else
-//     {
-//         printf("Arquivo não encontrado\n");
-//     }
-//     // TODO arrumar este return
-//     return a;
-// }
+void visita_info(int tipo,void *elem){
+        if(tipo == 2){
+            imprime_triangulo(elem);
+        }
+        if(tipo == 3){
+            imprime_retangulo(elem);
+        }
+        if(tipo == 4){
+            imprime_trapezio(elem);
+        }
+        if(tipo == 0){
+            imprime_circulo(elem);
+        }
+        if(tipo == 1){
+            imprime_quadrado(elem);
+        }
+}
