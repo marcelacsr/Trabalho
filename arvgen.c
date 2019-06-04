@@ -161,7 +161,7 @@ void retira_figuras (TAG *a, int cod){
     }
     ult_filhos->irmao = r->irmao; //faz faz ultimo filho apontar para irmao do pai que foi removido
     pai->filho = r->filho; // pai aponta para novo filho   
-    
+    free(r);
     return a;
 
     //TODO: remover um irmão do meio da lista de irmãos
