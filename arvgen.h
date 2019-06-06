@@ -30,6 +30,8 @@ void insere (TAG *filho, TAG *pai);
 
 //d TODO
 TAG *retira_figuras (TAG *a, int cod);
+void troca_pai(TAG *pai, TAG *filho);
+
 
 //e
 void libera_destroi (TAG *a);
