@@ -373,7 +373,7 @@ void altera_dimensoes(TAG* a, int id){
         printf("Insira as novas dimensões desejadas para");
         if(a-> tipo == 2){
             printf(" a base e altura\n");
-            float base = 0, altura = 0;
+            float base = 99, altura = 99;
             scanf(" %d %d", &base, &altura);
             elem = cria_triangulo(base, altura) ;
         }
@@ -401,6 +401,8 @@ void altera_dimensoes(TAG* a, int id){
             scanf(" %d", &lado);
             elem = cria_quadrado(lado);
         }
+        void *tmp = a->info;
+        free(tmp);
         a->info = elem;
     }
 }
