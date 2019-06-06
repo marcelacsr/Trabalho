@@ -10,21 +10,23 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
-typedef struct ag{
+typedef struct ag
+{
     int cod;
     int cod_pai;
     int tipo;
     void *info;
     struct ag *filho; /* ponteiro para eventual primeiro filho */
     struct ag *irmao; /* ponteiro para eventual irmão */
-}TAG;
+} TAG;
 
 TAG *inicializa(void)
 {
     return NULL;
 }
 
-TAG *cria(int cod, int cod_pai,int tipo, void* elem){
+TAG *cria(int cod, int cod_pai, int tipo, void *elem)
+{
     printf("Criando estrutura do cod: %d\n", cod);
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
@@ -48,8 +50,10 @@ void insere(TAG *a, TAG *sa)
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores
-void imprime(TAG *a){
-    if(!a) return;
+void imprime(TAG *a)
+{
+    if (!a)
+        return;
     TAG *p;
     printf("<%d\n", a->cod);
     for (p = a->filho; p != NULL; p = p->irmao)
@@ -60,27 +64,30 @@ void imprime(TAG *a){
     printf(">");
 }
 
-
-void imprime_recursivo(TAG *a) {
-    if (!a) {
+void imprime_recursivo(TAG *a)
+{
+    if (!a)
+    {
         printf(("<>"));
-    } else {
-        if ((!a->filho)&&(!a->irmao)) {
+    }
+    else
+    {
+        if ((!a->filho) && (!a->irmao))
+        {
             printf("<");
-            printf("%d ",a->cod);
+            printf("%d ", a->cod);
             printf(">");
-        } else {
+        }
+        else
+        {
             printf("<");
-            printf("%d ",a->cod);
+            printf("%d ", a->cod);
             imprime(a->irmao);
             imprime(a->filho);
             printf(">");
         }
     }
 }
-
-
-
 
 void imprime_pre(TAG *a)
 {
@@ -128,7 +135,7 @@ TAG *busca(TAG *a, int cod)
     return busca(a->filho, cod);
 }
 
-int busca2(TAG *a, int cod) 
+int busca2(TAG *a, int cod)
 {
     printf("buscando codigo... \n");
     TAG *p;
@@ -147,25 +154,29 @@ int busca2(TAG *a, int cod)
 // Separar em um metodo que associa um filho a um pai
 // E um que associa um filho a um irmão
 // Remove uma figura da arvore, através do seu codigo
-TAG *retira_figuras (TAG *a, int cod){
-    TAG *r = busca(a,cod); //encontrou o elemento 
+TAG *retira_figuras(TAG *a, int cod)
+{
+    TAG *r = busca(a, cod); //encontrou o elemento
     printf("if (r == NULL)\n");
-    if (r == NULL){
+    if (r == NULL)
+    {
         printf("Elemento não encontrado!\n");
         return r; //NULL
     }
-    if (r->cod_pai == 0) {
+    if (r->cod_pai == 0)
+    {
         printf("Elemento é RAIZ, não pode ser removido!\n");
         return a;
     }
-    printf("Removendo o elemento de código: %d\n", cod);    
+    printf("Removendo o elemento de código: %d\n", cod);
     printf("TAG *pai = busca(r, r->cod_pai): %d\n", r->cod_pai);
-    TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover    
+    TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover
 
     TAG *atual = pai->filho;
     TAG *ant = NULL;
     //printf("TAG *ult_filhos = r->filho\n");
-    while((atual->irmao) && (atual->cod != cod)){
+    while ((atual->irmao) && (atual->cod != cod))
+    {
         //TODO
         ant = atual;
         atual = atual->irmao;
@@ -173,30 +184,34 @@ TAG *retira_figuras (TAG *a, int cod){
     }
     printf("\n\n");
     // nao é o primeiro filho da lista de filhos && r não tem filhos
-    if ((ant!=NULL)&&(r->filho == NULL)){ 
+    if ((ant != NULL) && (r->filho == NULL))
+    {
         ant->irmao = atual->irmao;
         free(r);
         return a;
     }
     // é o primeiro filho da lista de filhos && r não tem filhos
-    if ((ant==NULL)&&(r->filho == NULL)){ 
+    if ((ant == NULL) && (r->filho == NULL))
+    {
         pai->filho = r->irmao;
         free(r);
         return a;
     }
     // é o primeiro filho da lista de filhos && r tem filhos
-    if ((ant==NULL)&&(r->filho != NULL)){
+    if ((ant == NULL) && (r->filho != NULL))
+    {
         pai->filho = r->irmao;
-        TAG *ult = r->filho;         
+        TAG *ult = r->filho;
         //percorre até encontrar o ultimo filho do pai
-        while(ult->irmao){            
+        while (ult->irmao)
+        {
             //altera o cod_pai
             printf("antigo: %d \n", ult->cod_pai);
             ult->cod_pai = pai->filho->cod;
             printf("cod do novo pai %d\n", ult->cod_pai);
-            ult=ult->irmao;
+            ult = ult->irmao;
         }
-        //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai  
+        //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai
         ult->irmao = pai->filho->filho;
         //faz o irmão do que sera removido, apontar para o primeiro filho do que foi removido
         pai->filho->filho = r->filho;
@@ -204,26 +219,29 @@ TAG *retira_figuras (TAG *a, int cod){
         return a;
     }
     // esta no meio da lista de filhos e irmao esquerda não tem filhos
-    if(ant->filho == NULL) {
+    if (ant->filho == NULL)
+    {
         ant->irmao = atual->irmao;
         ant->filho = atual->filho;
         free(r);
         return a;
     }
-    if(ant->filho != NULL){
+    if (ant->filho != NULL)
+    {
         ant->irmao = atual->irmao;
-        TAG *ult = atual->filho;       
-    //percorre até encontrar o ultimo filho do pai
-        while(ult->irmao){
-        //altera o cod_pai
+        TAG *ult = atual->filho;
+        //percorre até encontrar o ultimo filho do pai
+        while (ult->irmao)
+        {
+            //altera o cod_pai
             printf("antigo: %d \n", ult->cod_pai);
             ult->cod_pai = ant->cod;
             printf("cod do novo pai %d\n", ult->cod_pai);
-            ult=ult->irmao;
+            ult = ult->irmao;
         }
-    //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai  
+        //faz o ultimo filho da lista de filhos apontar para o primeiro filho do pai
         ult->irmao = ant->filho;
-    //faz o irmão do que sera removido, apontar para o primeiro filho do que foi removido
+        //faz o irmão do que sera removido, apontar para o primeiro filho do que foi removido
         ant->filho = atual->filho;
         free(r);
         return a;
@@ -248,61 +266,78 @@ RETANGULO
 TRAPEZIO 
 TRIANGULO
 */
-void imprime_no(TAG* elem){
-	printf("Cód: %d\n", elem->cod);
-	if(elem->tipo == 1){
-		imprime_circulo(elem->info);
-	}
-    if(elem->tipo == 2){
-		imprime_quadrado(elem->info);
-	}
-    if(elem->tipo == 3){
-		imprime_retangulo(elem->info);
-	}
-    if(elem->tipo == 4){
-		imprime_trapezio(elem->info);
-	}
-    if(elem->tipo == 5){
-		imprime_triangulo(elem->info);
-	}
+void imprime_no(TAG *elem)
+{
+    printf("Cód: %d\n", elem->cod);
+    if (elem->tipo == 1)
+    {
+        imprime_circulo(elem->info);
+    }
+    if (elem->tipo == 2)
+    {
+        imprime_quadrado(elem->info);
+    }
+    if (elem->tipo == 3)
+    {
+        imprime_retangulo(elem->info);
+    }
+    if (elem->tipo == 4)
+    {
+        imprime_trapezio(elem->info);
+    }
+    if (elem->tipo == 5)
+    {
+        imprime_triangulo(elem->info);
+    }
 }
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
- TAG *insere_cria(TAG *a, int cod, int cod_pai,int tipo, void *elem){
-    if(!a){
+TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
+{
+    if (!a)
+    {
         printf("Árvore não existe\n");
-        if(cod_pai !=0) printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
-        else { a = cria(cod, cod_pai, tipo, elem);
-        printf("Nó raiz criado!");}
+        if (cod_pai != 0)
+            printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
+        else
+        {
+            a = cria(cod, cod_pai, tipo, elem);
+            printf("Nó raiz criado!");
+        }
         return a;
     }
     printf("*** Entrou no insere ***\n");
     //verifica se quer inserir um cod = o cod_pai
-    if (cod == cod_pai){
+    if (cod == cod_pai)
+    {
         printf("Código do pai é igual ao código do filho\n");
         return a; //não insere
     }
-     //verifica se o cod existe
-    if (busca2(a, cod) == 1){
+    //verifica se o cod existe
+    if (busca2(a, cod) == 1)
+    {
         printf("Cod ja existe!\n");
         return a; // não insere
     }
 
     //verifica se cod_pai existe
-     if (busca2(a, cod_pai) == 0){
+    if (busca2(a, cod_pai) == 0)
+    {
         printf("Nao encontrou cod_pai\n");
         return a; //não insere
     }
 
     printf("*** Antes de criar o novo nó ***\n");
     TAG *novo_no_filho = cria(cod, cod_pai, tipo, elem);
-    
+
     // é raiz! Caso tentem inserir mais de uma raiz
-    if (cod_pai == 0){
+    if (cod_pai == 0)
+    {
         novo_no_filho->cod_pai = cod_pai;
         //se for o primeiro elemento, a nao existe??? pq a foi inicializado com NULL
-        if (a){
+        if (a)
+        {
             printf("a existe");
             a->cod_pai = novo_no_filho->cod;
             novo_no_filho->filho = a;
@@ -312,57 +347,18 @@ void imprime_no(TAG* elem){
     TAG *pai = busca(a, cod_pai); //Busca o nó pai
 
     //se o nó pai tem filho
-    if (pai->filho != NULL){
+    if (pai->filho != NULL)
+    {
         novo_no_filho->irmao = pai->filho;
-        //a->filho = pai->filho->filho;
         pai->filho = novo_no_filho;
-    } else {
+    }
+    else
+    {
         printf("\nfaz pai->filho apontar para novo_filho\n");
         pai->filho = novo_no_filho;
     }
     printf("\nimprime arvore parcial\n");
     imprime(a);
     printf("\n");
-    return a;    
-} 
-
-//Leitura de arquivo
-/*
-1/0/TRI 3 2
-2/1/RET 3 3
-3/1/TRA 2 3 4
-4/1/CIR 4
-5/4/QUA 3
-6/2/RET 2 2
-7/5/TRA 1 2 3
-8/5/CIR 2
-9/4/QUA 1
-10/1/TRI 1 2
-*/
-
-//testar
-// TAG *le_arquivo(TAG *a, char *caminho){
-//     int n = 25;
-//     char linha[n];
-
-//     FILE *arquivo = fopen(caminho, "r");
-//     if (arquivo)
-//     {
-//         while (fgets(linha, n, arquivo) != NULL)
-//         {
-//             int cod = atoi(strtok(linha, "/"));
-//             int cod_pai = atoi(strtok(NULL, "/"));
-//             char *figura = strtok(NULL, "");
-//             printf("%d %d %s\n", cod, cod_pai, figura);
-
-//             a = insere_cria(a, cod, cod_pai);
-//         }
-//         fclose(arquivo);
-//     }
-//     else
-//     {
-//         printf("Arquivo não encontrado\n");
-//     }
-//     // TODO arrumar este return
-//     return a;
-// }
+    return a;
+}
