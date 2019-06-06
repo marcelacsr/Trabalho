@@ -55,7 +55,8 @@ void imprime(TAG *a)
     if (!a)
         return;
     TAG *p;
-    printf("<%d (%d)\n", a->cod, a->cod_pai);
+    printf("<%d\n", a->cod);
+    visita_info(a->tipo,a->info);
     for (p = a->filho; p != NULL; p = p->irmao)
     {
         //printf(".");
@@ -343,5 +344,24 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
     printf("\nimprime arvore parcial\n");
     imprime(a);
     printf("\n");
-    return a;
+    return a;    
+} 
+
+void visita_info(int tipo,void *elem){
+        if(tipo == 2){
+            imprime_triangulo(elem);
+        }
+        if(tipo == 3){
+            imprime_retangulo(elem);
+        }
+        if(tipo == 4){
+            imprime_trapezio(elem);
+        }
+        if(tipo == 0){
+            imprime_circulo(elem);
+        }
+        if(tipo == 1){
+            imprime_quadrado(elem);
+        }
 }
+

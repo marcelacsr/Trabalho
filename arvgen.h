@@ -25,6 +25,7 @@ void imprime (TAG *a);
 void imprime_pre (TAG *a);
 void imprime_pos (TAG *a);
 void imprime_recursivo(TAG *a);
+void visita_info(int tipo,void *elem);
 //c
 void insere (TAG *filho, TAG *pai);
 
