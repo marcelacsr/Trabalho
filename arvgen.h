@@ -38,7 +38,7 @@ void troca_pai(TAG *pai, TAG *filho);
 void libera_destroi (TAG *a);
 
 //f TODO
-void altera_dimensoes (TAG *a, int cod);
+void altera_dimensoes(TAG* a, int id);
 
 TAG* le_arquivo(TAG *t, char* path);
 
