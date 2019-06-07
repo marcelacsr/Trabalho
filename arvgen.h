@@ -6,9 +6,9 @@ typedef struct no TNO;
 
 /* deve ser permitido ao usuário do sistema: 
 (a) buscar figuras geométricas, por meio de um código único;  ok
-(b) imprimir informações relevantes, tanto da árvore, quanto das figuras, incluindo-se sua área; 
+(b) imprimir informações relevantes, tanto da árvore, quanto das figuras, incluindo-se sua área; ok
 (c) inserir novas figuras; 
-(d) retirar figuras, passando seus descendentes para outro pai; 
+(d) retirar figuras, passando seus descendentes para outro pai; ok
 (e) destruir a árvore; e ok
 (f) alterar as dimensões de figuras;  */
 
@@ -36,9 +36,11 @@ void troca_pai(TAG *pai, TAG *filho);
 
 //e
 void libera_destroi (TAG *a);
+void libera(TAG *a);
 
 //f TODO
-void altera_dimensoes (TAG *a, int cod);
+TAG * altera_dimensoes (TAG *a, int cod);
+
 
 TAG* le_arquivo(TAG *t, char* path);
 

@@ -52,17 +52,21 @@ void insere(TAG *a, TAG *sa)
 //primeiro a raiz dps as sub arvores
 void imprime(TAG *a)
 {
-    if (!a)
-        return;
-    TAG *p;
-    printf("<%d\n", a->cod);
-    visita_info(a->tipo,a->info);
-    for (p = a->filho; p != NULL; p = p->irmao)
-    {
-        //printf(".");
-        imprime(p); /* imprime filhos */
+    if (!a) { 
+        printf ("\nArvore nao existe!!!\n");
+        return; 
     }
-    printf(">");
+    if (a) {
+        TAG *p;
+        printf("\nENTROU NO IMPRIME\n");
+        printf("<%d\n", a->cod);    
+        visita_info(a->tipo, a->info);
+        for (p = a->filho; p != NULL; p = p->irmao)
+        {
+            imprime(p); /* imprime filhos */
+        }
+        printf(">");
+    }
 }
 
 void imprime_recursivo(TAG *a)
@@ -123,7 +127,6 @@ void imprime_bonito(TAG *a)
     }
 }
 
-//todo dando segment fault quando n existe
 TAG *busca(TAG *a, int cod)
 {
     if (!a)
@@ -233,14 +236,24 @@ void troca_pai(TAG *pai, TAG *filho) {
 }
 
 
-void libera_destroi(TAG *a)
-{
-    if (a)
-    {
+void libera_destroi(TAG *a){
+    if (a){
         libera_destroi(a->irmao);
         libera_destroi(a->filho);
+        free(a->info);
         free(a);
     }
+}
+
+void libera(TAG *a){
+    TAG* p = a->filho;
+    while (p!=NULL) {
+        TAG* t = p->irmao;
+        free(p->info);
+        libera(p);        
+        p = t;
+    }
+    free(a);
 }
 
 /*
@@ -348,6 +361,7 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
 } 
 
 void visita_info(int tipo,void *elem){
+    printf("\nENTROU NO Visita Info\n");
         if(tipo == 2){
             imprime_triangulo(elem);
         }
@@ -364,4 +378,3 @@ void visita_info(int tipo,void *elem){
             imprime_quadrado(elem);
         }
 }
-
