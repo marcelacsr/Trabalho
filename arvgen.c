@@ -10,8 +10,7 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
-typedef struct ag
-{
+typedef struct ag {
     int cod;
     int cod_pai;
     int tipo;
@@ -20,13 +19,11 @@ typedef struct ag
     struct ag *irmao; /* ponteiro para eventual irmão */
 } TAG;
 
-TAG *inicializa(void)
-{
+TAG *inicializa(void){
     return NULL;
 }
 
-TAG *cria(int cod, int cod_pai, int tipo, void *elem)
-{
+TAG *cria(int cod, int cod_pai, int tipo, void *elem){
     printf("Criando estrutura do cod: %d\n", cod);
     TAG *a = (TAG *)malloc(sizeof(TAG));
     a->cod = cod;
@@ -40,26 +37,22 @@ TAG *cria(int cod, int cod_pai, int tipo, void *elem)
 
 /* insere uma nova sub-árvore como filha de um dado,
 sempre no início da lista, por simplicidade */
-
-void insere(TAG *a, TAG *sa)
-//TODO verificar se o elemento(cod) já existe primeiro
-{
+void insere(TAG *a, TAG *sa){
     sa->irmao = a->filho;
     a->filho = sa;
 }
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores
-void imprime(TAG *a)
-{
-    if (!a) { 
-        printf ("\nArvore nao existe!!!\n");
-        return; 
+void imprime(TAG *a){
+    if (!a){
+        printf("\nArvore nao existe!!!\n");
+        return;
     }
-    if (a) {
+    if (a){
         TAG *p;
         printf("\nENTROU NO IMPRIME\n");
-        printf("<%d\n", a->cod);    
+        printf("<%d\n", a->cod);
         visita_info(a->tipo, a->info);
         for (p = a->filho; p != NULL; p = p->irmao)
         {
@@ -69,22 +62,17 @@ void imprime(TAG *a)
     }
 }
 
-void imprime_recursivo(TAG *a)
-{
-    if (!a)
-    {
+void imprime_recursivo(TAG *a){
+    if (!a){
         printf(("<>"));
     }
-    else
-    {
-        if ((!a->filho) && (!a->irmao))
-        {
+    else{
+        if ((!a->filho) && (!a->irmao)){
             printf("<");
             printf("%d ", a->cod);
             printf(">");
         }
-        else
-        {
+        else{
             printf("<");
             printf("%d ", a->cod);
             imprime(a->irmao);
@@ -94,31 +82,25 @@ void imprime_recursivo(TAG *a)
     }
 }
 
-void imprime_pre(TAG *a)
-{
-    if (a)
-    {
+void imprime_pre(TAG *a){
+    if (a){
         printf("%d\n", a->cod);
         imprime_pre(a->irmao);
         imprime_pre(a->filho);
     }
 }
 
-void imprime_pos(TAG *a)
-{
-    if (a)
-    {
+void imprime_pos(TAG *a){
+    if (a){
         imprime_pos(a->irmao);
         printf("%d\n", a->cod);
         imprime_pos(a->filho);
     }
 }
 
-void imprime_bonito(TAG *a)
-{
+void imprime_bonito(TAG *a){
     TAG *p;
-    if (a)
-    {
+    if (a){
         for (p = a->filho; p != NULL; p = p->irmao)
             printf("---");
         printf("%d\n", a->cod);
@@ -127,8 +109,7 @@ void imprime_bonito(TAG *a)
     }
 }
 
-TAG *busca(TAG *a, int cod)
-{
+TAG *busca(TAG *a, int cod){
     if (!a)
         return NULL;
     if (a->cod == cod)
@@ -139,8 +120,7 @@ TAG *busca(TAG *a, int cod)
     return busca(a->filho, cod);
 }
 
-int busca2(TAG *a, int cod)
-{
+int busca2(TAG *a, int cod){
     printf("buscando codigo... \n");
     TAG *p;
     if (a->cod == cod) //encontrou, retorna 1
@@ -159,7 +139,8 @@ int busca2(TAG *a, int cod)
 // E troca o cod do pai
 // Remove uma figura da arvore, através do seu codigo
 TAG *retira_figuras(TAG *a, int cod){
-    if(!a) return NULL;
+    if (!a)
+        return NULL;
     TAG *r = busca(a, cod); //encontrou o elemento
     if (!r){
         printf("Elemento não encontrado!\n");
@@ -173,7 +154,7 @@ TAG *retira_figuras(TAG *a, int cod){
     TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover
     TAG *atual = pai->filho;
     TAG *ant = NULL;
-    while ((atual->irmao) && (atual->cod != cod)){        
+    while ((atual->irmao) && (atual->cod != cod)){
         ant = atual;
         atual = atual->irmao;
         printf("...buscando nó na lista de irmaos...\n");
@@ -195,13 +176,13 @@ TAG *retira_figuras(TAG *a, int cod){
     if ((ant == NULL) && (r->filho != NULL)){
         pai->filho = r->irmao;
         troca_pai(pai, r->filho);
-        free(r); 
+        free(r);
         return a;
     }
     // esta no meio da lista de filhos e irmao esquerda não tem filhos
     if (ant->filho == NULL){
         ant->irmao = atual->irmao;
-        troca_pai(pai, atual->filho);        
+        troca_pai(pai, atual->filho);
         free(r);
         return a;
     }
@@ -216,25 +197,25 @@ TAG *retira_figuras(TAG *a, int cod){
 }
 
 //Muda os codigos do pai e associa a um novo pai(avó)!
-void troca_pai(TAG *pai, TAG *filho) {
-    if(!filho) return;    
-    printf("\n****Entrou no troca pai***\n");    
-    if(pai->filho) { 
-        TAG *ult = pai->filho; 
-		while(ult->irmao) {
+void troca_pai(TAG *pai, TAG *filho){
+    if (!filho)
+        return;
+    printf("\n****Entrou no troca pai***\n");
+    if (pai->filho){
+        TAG *ult = pai->filho;
+        while (ult->irmao){
             //percorre até encontrar o ultimo filho do pai
             ult = ult->irmao;
-        }        
-		ult->irmao = filho;
-	}
-	TAG *atual = filho;
-	while(atual) { 
+        }
+        ult->irmao = filho;
+    }
+    TAG *atual = filho;
+    while (atual){
         //percorrendo e alterando os cod_pai
-		atual->cod_pai = pai->cod;
-		atual = atual->irmao;
-	}
+        atual->cod_pai = pai->cod;
+        atual = atual->irmao;
+    }
 }
-
 
 void libera_destroi(TAG *a){
     if (a){
@@ -246,11 +227,11 @@ void libera_destroi(TAG *a){
 }
 
 void libera(TAG *a){
-    TAG* p = a->filho;
-    while (p!=NULL) {
-        TAG* t = p->irmao;
+    TAG *p = a->filho;
+    while (p != NULL){
+        TAG *t = p->irmao;
         free(p->info);
-        libera(p);        
+        libera(p);
         p = t;
     }
     free(a);
@@ -263,8 +244,7 @@ RETANGULO
 TRAPEZIO 
 TRIANGULO
 */
-void imprime_no(TAG *elem)
-{
+void imprime_no(TAG *elem){
     printf("Cód: %d\n", elem->cod);
     if (elem->tipo == 1)
     {
@@ -290,15 +270,12 @@ void imprime_no(TAG *elem)
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
-TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
-{
-    if (!a)
-    {
+TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
+    if (!a){
         printf("Árvore não existe\n");
         if (cod_pai != 0)
             printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
-        else
-        {
+        else{
             a = cria(cod, cod_pai, tipo, elem);
             printf("Nó raiz criado!");
         }
@@ -306,35 +283,27 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
     }
     printf("*** Entrou no insere ***\n");
     //verifica se quer inserir um cod = o cod_pai
-    if (cod == cod_pai)
-    {
+    if (cod == cod_pai){
         printf("Código do pai é igual ao código do filho\n");
         return a; //não insere
     }
     //verifica se o cod existe
-    if (busca2(a, cod) == 1)
-    {
+    if (busca2(a, cod) == 1){
         printf("Cod ja existe!\n");
         return a; // não insere
     }
-
     //verifica se cod_pai existe
-    if (busca2(a, cod_pai) == 0)
-    {
+    if (busca2(a, cod_pai) == 0){
         printf("Nao encontrou cod_pai\n");
         return a; //não insere
     }
-
     printf("*** Antes de criar o novo nó ***\n");
     TAG *novo_no_filho = cria(cod, cod_pai, tipo, elem);
-
     // é raiz! Caso tentem inserir mais de uma raiz
-    if (cod_pai == 0)
-    {
+    if (cod_pai == 0){
         novo_no_filho->cod_pai = cod_pai;
         //se for o primeiro elemento, a nao existe??? pq a foi inicializado com NULL
-        if (a)
-        {
+        if (a){
             printf("a existe");
             a->cod_pai = novo_no_filho->cod;
             novo_no_filho->filho = a;
@@ -342,39 +311,41 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
         return novo_no_filho;
     }
     TAG *pai = busca(a, cod_pai); //Busca o nó pai
-
     //se o nó pai tem filho
-    if (pai->filho != NULL)
-    {
+    if (pai->filho != NULL){
         novo_no_filho->irmao = pai->filho;
         pai->filho = novo_no_filho;
     }
-    else
-    {
+    else{
         printf("\nfaz pai->filho apontar para novo_filho\n");
         pai->filho = novo_no_filho;
     }
     printf("\nimprime arvore parcial\n");
     imprime(a);
     printf("\n");
-    return a;    
-} 
+    return a;
+}
 
-void visita_info(int tipo,void *elem){
+void visita_info(int tipo, void *elem){
     printf("\nENTROU NO Visita Info\n");
-        if(tipo == 2){
-            imprime_triangulo(elem);
-        }
-        if(tipo == 3){
-            imprime_retangulo(elem);
-        }
-        if(tipo == 4){
-            imprime_trapezio(elem);
-        }
-        if(tipo == 0){
-            imprime_circulo(elem);
-        }
-        if(tipo == 1){
-            imprime_quadrado(elem);
-        }
+    if (tipo == 2)
+    {
+        imprime_triangulo(elem);
+    }
+    if (tipo == 3)
+    {
+        imprime_retangulo(elem);
+    }
+    if (tipo == 4)
+    {
+        imprime_trapezio(elem);
+    }
+    if (tipo == 0)
+    {
+        imprime_circulo(elem);
+    }
+    if (tipo == 1)
+    {
+        imprime_quadrado(elem);
+    }
 }
