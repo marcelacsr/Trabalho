@@ -10,15 +10,7 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
-typedef struct ag
-{
-    int cod;
-    int cod_pai;
-    int tipo;
-    void *info;
-    struct ag *filho; /* ponteiro para eventual primeiro filho */
-    struct ag *irmao; /* ponteiro para eventual irmão */
-} TAG;
+
 
 TAG *inicializa(void)
 {

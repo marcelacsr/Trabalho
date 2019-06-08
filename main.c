@@ -1,7 +1,8 @@
 #include "menu.c"
-#include "le_arquivo.c"
+#include "learquivo.c"
+#include "arvgen.h"
 
-int main(void)
+int main(void)  
 {
     TAG *a = inicializa();
     

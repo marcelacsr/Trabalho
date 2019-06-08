@@ -1,8 +1,21 @@
+#ifndef ARVGEN_H
+#define ARVGEN_H
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "figuras.h"
 
-typedef struct ag TAG;
-typedef struct no TNO;
+typedef struct ag
+{
+    int cod;
+    int cod_pai;
+    int tipo;
+    void *info;
+    struct ag *filho; /* ponteiro para eventual primeiro filho */
+    struct ag *irmao; /* ponteiro para eventual irmão */
+} TAG;
+
+
 
 /* deve ser permitido ao usuário do sistema: 
 (a) buscar figuras geométricas, por meio de um código único;  ok
@@ -49,3 +62,6 @@ void imprime_quadrado(void* elem);
 void imprime_retangulo(void* elem);
 void imprime_trapezio(void* elem);
 void imprime_triangulo(void* elem);
+
+
+#endif /* ARVGEN_H */

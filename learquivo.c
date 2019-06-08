@@ -1,9 +1,11 @@
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "figuras.c"
+#include "figuras.h"
 #include "arvgen.h"
-#include "arvgen.c"
 
 
 TAG* read_arquivo(TAG* arv){   
