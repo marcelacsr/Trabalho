@@ -2,10 +2,11 @@
 #include "arvgen.c"
 #include "learquivo.h"
 #include "learquivo.c"
+#include "menu.h"
+#include "menu.c"
 
 int main(void){
-    TAG *a = inicializa();
-    
+    TAG *a = inicializa();    
     printf("Lendo arquivo..\n");
     a = read_arquivo(a);
     printf("arquivo lido\n preparando impressão\n");

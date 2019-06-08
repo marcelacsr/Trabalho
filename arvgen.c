@@ -223,7 +223,7 @@ void libera_destroi(TAG *a){
         libera_destroi(a->filho);
         free(a->info);
         free(a);
-    }
+    }    
 }
 
 void libera(TAG *a){
@@ -296,8 +296,6 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
         printf("\nfaz pai->filho apontar para novo_filho\n");
         pai->filho = novo_no_filho;
     }
-    printf("\nimprime arvore parcial\n");
-    imprime(a);
     printf("\n");
     return a;
 }
@@ -329,41 +327,44 @@ void altera_dimensoes(TAG* a, int id){
     TAG* p = busca(a,id);
     void *elem = NULL;
     if(p){
-        visita_info(a->tipo,a->info);
+        printf("Figura a ser alterada: ");
+        visita_info(p->tipo, p->info);
         printf("Insira as novas dimensões desejadas para");
-        if(a-> tipo == 2){
+        if(p-> tipo == 2){
             printf(" a base e altura\n");
             float base = 0, altura = 0;
             scanf(" %f %f", &base, &altura);
             elem = cria_triangulo(base, altura);
         }
-        if(a-> tipo == 3){
+        if(p-> tipo == 3){
             printf(" a base e altura\n");
             float base = 0, altura = 0;
             scanf(" %f %f", &base, &altura);
             elem = cria_retangulo(base, altura);
         }
-        if(a-> tipo == 4){
+        if(p-> tipo == 4){
             printf(" a base maior, base menor e altura\n");
             float base_maior = 0, base_menor = 0, altura = 0;
             scanf(" %f %f %f", &base_maior, &base_menor, &altura);
             elem = cria_trapezio(base_maior, base_menor, altura);
         }
-        if(a-> tipo == 0){
+        if(p-> tipo == 0){
             printf(" o raio");
             float raio = 0;
             scanf(" %f", &raio);
             elem = cria_circulo(raio);
         }
-        if(a-> tipo == 1){
+        if(p-> tipo == 1){
             printf(" o lado");
             float lado = 0;
             scanf(" %f", &lado);
             elem = cria_quadrado(lado);
         }
-        void *tmp = a->info;
+        void *tmp = p->info;
         free(tmp);
         p->info = elem;
+        printf("Figura alterada: ");
+        visita_info(p->tipo, p->info);
     }
 }
 
