@@ -1,4 +1,5 @@
 #include "arvgen.h"
+#include "figuras.h"
 
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
@@ -244,29 +245,6 @@ RETANGULO
 TRAPEZIO 
 TRIANGULO
 */
-void imprime_no(TAG *elem){
-    printf("Cód: %d\n", elem->cod);
-    if (elem->tipo == 1)
-    {
-        imprime_circulo(elem->info);
-    }
-    if (elem->tipo == 2)
-    {
-        imprime_quadrado(elem->info);
-    }
-    if (elem->tipo == 3)
-    {
-        imprime_retangulo(elem->info);
-    }
-    if (elem->tipo == 4)
-    {
-        imprime_trapezio(elem->info);
-    }
-    if (elem->tipo == 5)
-    {
-        imprime_triangulo(elem->info);
-    }
-}
 
 //TODO: testar
 //TODO: permitir inserir apenas um nó com cod_pai = 0; pq só um é raiz;
@@ -359,7 +337,7 @@ void altera_dimensoes(TAG* a, int id){
             printf(" a base e altura\n");
             float base = 0, altura = 0;
             scanf(" %f %f", &base, &altura);
-            elem = cria_triangulo(base, altura) ;
+            elem = cria_triangulo(base, altura);
         }
         if(a-> tipo == 3){
             printf(" a base e altura\n");

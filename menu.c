@@ -70,7 +70,7 @@ void menu_nova_figura(TAG *a){
                 elem = cria_circulo(raio);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 91, cod_pai, 1, elem);
+                a = insere_cria(a, 91, cod_pai, 0, elem);
             break;
             case 2:
                 printf("Insira as novas dimensões desejadas para o lado\n");
@@ -80,7 +80,7 @@ void menu_nova_figura(TAG *a){
                 elem = cria_quadrado(lado);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 91, cod_pai, 2, elem);
+                a = insere_cria(a, 91, cod_pai, 1, elem);
             break;
             case 3:
             //TODO fazer função para pegar o maior ID da árvore,
@@ -93,7 +93,7 @@ void menu_nova_figura(TAG *a){
                 elem = cria_triangulo(base,altura);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 92, cod_pai, 5, elem);
+                a = insere_cria(a, 92, cod_pai, 4, elem);
             break;
             case 4: 
                 printf("Insira as novas dimensões desejadas para a base e a altura\n");
@@ -104,7 +104,7 @@ void menu_nova_figura(TAG *a){
                 elem = cria_retangulo(base,altura);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 93, cod_pai, 3, elem);
+                a = insere_cria(a, 93, cod_pai, 2, elem);
             break;
             case 5:
                 printf("Insira as novas dimensões desejadas para a base maior, a base menor e a altura\n");
@@ -116,7 +116,7 @@ void menu_nova_figura(TAG *a){
                 elem = cria_trapezio(base_menor, base_maior, altura);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 94, cod_pai, 4, elem);
+                a = insere_cria(a, 94, cod_pai, 3, elem);
             break;
         }
     }

@@ -3,6 +3,11 @@
 #include "figuras.h"
 #include "math.h"
 #define PI 3.14
+#define CIR 0
+#define QUA 1
+#define TRI 2
+#define RET 3
+#define TRA 4
 
 typedef struct triangulo
 {
