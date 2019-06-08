@@ -2,8 +2,7 @@
 #include "learquivo.c"
 #include "arvgen.h"
 
-int main(void)  
-{
+int main(void){
     TAG *a = inicializa();
     
     printf("Lendo arquivo..\n");
