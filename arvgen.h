@@ -55,4 +55,9 @@ void imprime_retangulo(void *elem);
 void imprime_trapezio(void *elem);
 void imprime_triangulo(void *elem);
 
+
+
+int busca_maior_cod(TAG *a);
+int max(int a,int b);
+
 #endif

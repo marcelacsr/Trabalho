@@ -52,7 +52,6 @@ void imprime(TAG *a){
     }
     if (a){
         TAG *p;
-        printf("\nENTROU NO IMPRIME\n");
         printf("<%d\n", a->cod);
         visita_info(a->tipo, a->info);
         for (p = a->filho; p != NULL; p = p->irmao)
@@ -304,7 +303,6 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
 }
 
 void visita_info(int tipo, void *elem){
-    printf("\nENTROU NO Visita Info\n");
     if (tipo == 2)
     {
         imprime_triangulo(elem);
@@ -367,4 +365,16 @@ void altera_dimensoes(TAG* a, int id){
         free(tmp);
         p->info = elem;
     }
+}
+
+int busca_maior_cod(TAG *a){
+    if (!a)
+        return -1;
+    int maior = max(a->cod, busca_maior_cod(a->irmao));
+    maior = max(maior, busca_maior_cod(a->filho));
+    return maior;
+}
+
+int max(int a,int b){
+   return a > b ? a : b ;
 }
