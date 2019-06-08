@@ -1,5 +1,5 @@
-#include "menu.c"
-#include "learquivo.c"
+#include "menu.h"
+#include "learquivo.h"
 #include "arvgen.h"
 
 int main(void){

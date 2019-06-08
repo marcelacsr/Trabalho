@@ -16,8 +16,11 @@ void menu(TAG *a){
         printf("7 - *** vazio ***\n");
         printf("0 - Sair\n");
         scanf(" %d", &opt);
-        
+
         switch (opt){
+            case 0:
+                return;
+            break;
             case 1:
             break;
             case 2:
@@ -41,6 +44,10 @@ void menu(TAG *a){
 
 void menu_nova_figura(TAG *a){
     int opt = 1;
+    void *elem = NULL;
+    int cod_pai = 0;
+    float base = 0;
+    float altura = 0;
     while(1){
         printf("*** Figuras ***\n");
         printf("1 - Inserir um circulo\n");
@@ -56,26 +63,60 @@ void menu_nova_figura(TAG *a){
                 menu(a);
             break;
             case 1:
-                printf("Insira as novas dimensões desejadas para o raio");
+                printf("Insira as novas dimensões desejadas para o raio\n");
                 float raio = 0;
-                int cod_pai = 0;
+                cod_pai = 0;
                 scanf(" %f", &raio);
-                void *elem = cria_circulo(raio);
+                elem = cria_circulo(raio);
                 printf("Insira o código do pai");
                 scanf(" %d", &cod_pai);
-                a = insere_cria(a, 91 , cod_pai,0 ,elem);
+                a = insere_cria(a, 91, cod_pai, 1, elem);
             break;
             case 2:
-                imprime(a);
+                printf("Insira as novas dimensões desejadas para o lado\n");
+                float lado = 0;
+                cod_pai = 0;
+                scanf(" %f %f", &lado);
+                elem = cria_quadrado(lado);
+                printf("Insira o código do pai");
+                scanf(" %d", &cod_pai);
+                a = insere_cria(a, 91, cod_pai, 2, elem);
             break;
             case 3:
             //TODO fazer função para pegar o maior ID da árvore,
             // para então, ao criar uma figura adicionar esse id +1 como id do nó
-
+                printf("Insira as novas dimensões desejadas para a base e a altura\n");
+                base = 0;
+                altura = 0;
+                int cod_pai = 0;
+                scanf(" %f %f", &base, &altura);
+                elem = cria_triangulo(base,altura);
+                printf("Insira o código do pai");
+                scanf(" %d", &cod_pai);
+                a = insere_cria(a, 92, cod_pai, 5, elem);
             break;
-            case 4:
+            case 4: 
+                printf("Insira as novas dimensões desejadas para a base e a altura\n");
+                base = 0;
+                altura = 0;
+                cod_pai = 0;
+                scanf(" %f %f", &base, &altura);
+                elem = cria_retangulo(base,altura);
+                printf("Insira o código do pai");
+                scanf(" %d", &cod_pai);
+                a = insere_cria(a, 93, cod_pai, 3, elem);
             break;
             case 5:
+                printf("Insira as novas dimensões desejadas para a base maior, a base menor e a altura\n");
+                float base_menor = 0;
+                float base_maior = 0;
+                float altura = 0;
+                cod_pai = 0;
+                scanf(" %f %f %f", &base_maior, &base_menor, &altura);
+                elem = cria_trapezio(base_menor, base_maior, altura);
+                printf("Insira o código do pai");
+                scanf(" %d", &cod_pai);
+                a = insere_cria(a, 94, cod_pai, 4, elem);
             break;
         }
     }
