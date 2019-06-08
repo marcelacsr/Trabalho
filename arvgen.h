@@ -6,6 +6,11 @@
 #include <string.h>
 #include "figuras.h"
 #include "figuras.c"
+#include "avltree.h"
+#include "avltree.c"
+#include "auxiliar.h"
+#include "auxiliar.c"
+
 
 typedef struct ag TAG;
 typedef struct no TNO;
@@ -59,5 +64,9 @@ void imprime_triangulo(void *elem);
 
 int busca_maior_cod(TAG *a);
 int max(int a,int b);
+
+
+AVL_Tree *cover(TAG *a);
+void converte(TAG *a, AVL_Tree **arv);
 
 #endif
