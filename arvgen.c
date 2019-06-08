@@ -58,8 +58,7 @@ void imprime(TAG *a)
     }
     if (a) {
         TAG *p;
-        printf("\nENTROU NO IMPRIME\n");
-        printf("<%d\n", a->cod);    
+        printf("<id: %d\n", a->cod);    
         visita_info(a->tipo, a->info);
         for (p = a->filho; p != NULL; p = p->irmao)
         {
@@ -217,8 +216,7 @@ TAG *retira_figuras(TAG *a, int cod){
 
 //Muda os codigos do pai e associa a um novo pai(avó)!
 void troca_pai(TAG *pai, TAG *filho) {
-    if(!filho) return;    
-    printf("\n****Entrou no troca pai***\n");    
+    if(!filho) return;      
     if(pai->filho) { 
         TAG *ult = pai->filho; 
 		while(ult->irmao) {
@@ -304,7 +302,6 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
         }
         return a;
     }
-    printf("*** Entrou no insere ***\n");
     //verifica se quer inserir um cod = o cod_pai
     if (cod == cod_pai)
     {
@@ -361,7 +358,6 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem)
 } 
 
 void visita_info(int tipo,void *elem){
-    printf("\nENTROU NO Visita Info\n");
         if(tipo == 2){
             imprime_triangulo(elem);
         }
@@ -387,36 +383,36 @@ void altera_dimensoes(TAG* a, int id){
         printf("Insira as novas dimensões desejadas para");
         if(a-> tipo == 2){
             printf(" a base e altura\n");
-            float base = 99, altura = 99;
-            scanf(" %d %d", &base, &altura);
+            float base = 0, altura = 0;
+            scanf(" %f %f", &base, &altura);
             elem = cria_triangulo(base, altura) ;
         }
         if(a-> tipo == 3){
             printf(" a base e altura\n");
             float base = 0, altura = 0;
-            scanf(" %d %d", &base, &altura);
+            scanf(" %f %f", &base, &altura);
             elem = cria_retangulo(base, altura);
         }
         if(a-> tipo == 4){
             printf(" a base maior, base menor e altura\n");
             float base_maior = 0, base_menor = 0, altura = 0;
-            scanf(" %d %d %d", &base_maior, &base_menor, &altura);
+            scanf(" %f %f %f", &base_maior, &base_menor, &altura);
             elem = cria_trapezio(base_maior, base_menor, altura);
         }
         if(a-> tipo == 0){
             printf(" o raio");
             float raio = 0;
-            scanf(" %d", &raio);
+            scanf(" %f", &raio);
             elem = cria_circulo(raio);
         }
         if(a-> tipo == 1){
             printf(" o lado");
             float lado = 0;
-            scanf(" %d", &lado);
+            scanf(" %f", &lado);
             elem = cria_quadrado(lado);
         }
         void *tmp = a->info;
         free(tmp);
-        a->info = elem;
+        p->info = elem;
     }
 }

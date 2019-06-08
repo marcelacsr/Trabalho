@@ -51,5 +51,9 @@ TAG* read_arquivo(TAG* arv){
         }
         arv = insere_cria(arv, a, b, tipo, figura);
     }
+    if (!freopen("/dev/tty", "r", stdin)) {
+        perror("/dev/tty");
+        exit(1);
+    }
     return arv;
 }

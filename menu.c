@@ -1,4 +1,3 @@
-#include <stdio.h>
 void menu(){
     int opt = 1;
     while(opt){
@@ -11,7 +10,7 @@ void menu(){
         printf("6 - Inserir um retangulo\n");
         printf("7 - Inserir um trapezio\n");
         printf("0 - Sair\n");
-        scanf("%d", &opt);
+        scanf(" %d", &opt);
     }
     return;
 }
