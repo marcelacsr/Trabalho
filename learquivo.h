@@ -1,7 +1,8 @@
 #ifndef LEARQUIVO_H
 #define LEARQUIVO_H
 
-#include "arvgen.h"
+typedef struct ag TAG;
+typedef struct no TNO;
 
 TAG* read_arquivo(TAG* arv);
 

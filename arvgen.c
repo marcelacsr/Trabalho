@@ -10,6 +10,14 @@
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
 
+typedef struct ag {
+    int cod;
+    int cod_pai;
+    int tipo;
+    void *info;
+    struct ag *filho; /* ponteiro para eventual primeiro filho */
+    struct ag *irmao; /* ponteiro para eventual irmão */
+} TAG;
 
 TAG *inicializa(void){
     return NULL;
@@ -43,7 +51,8 @@ void imprime(TAG *a){
     }
     if (a){
         TAG *p;
-        printf("<id: %d\n", a->cod);    
+        printf("\nENTROU NO IMPRIME\n");
+        printf("<%d\n", a->cod);
         visita_info(a->tipo, a->info);
         for (p = a->filho; p != NULL; p = p->irmao)
         {
@@ -188,11 +197,13 @@ TAG *retira_figuras(TAG *a, int cod){
 }
 
 //Muda os codigos do pai e associa a um novo pai(avó)!
-void troca_pai(TAG *pai, TAG *filho) {
-    if(!filho) return;      
-    if(pai->filho) { 
-        TAG *ult = pai->filho; 
-		while(ult->irmao) {
+void troca_pai(TAG *pai, TAG *filho){
+    if (!filho)
+        return;
+    printf("\n****Entrou no troca pai***\n");
+    if (pai->filho){
+        TAG *ult = pai->filho;
+        while (ult->irmao){
             //percorre até encontrar o ultimo filho do pai
             ult = ult->irmao;
         }
@@ -314,22 +325,28 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
     return a;
 }
 
-void visita_info(int tipo,void *elem){
-        if(tipo == 2){
-            imprime_triangulo(elem);
-        }
-        if(tipo == 3){
-            imprime_retangulo(elem);
-        }
-        if(tipo == 4){
-            imprime_trapezio(elem);
-        }
-        if(tipo == 0){
-            imprime_circulo(elem);
-        }
-        if(tipo == 1){
-            imprime_quadrado(elem);
-        }
+void visita_info(int tipo, void *elem){
+    printf("\nENTROU NO Visita Info\n");
+    if (tipo == 2)
+    {
+        imprime_triangulo(elem);
+    }
+    if (tipo == 3)
+    {
+        imprime_retangulo(elem);
+    }
+    if (tipo == 4)
+    {
+        imprime_trapezio(elem);
+    }
+    if (tipo == 0)
+    {
+        imprime_circulo(elem);
+    }
+    if (tipo == 1)
+    {
+        imprime_quadrado(elem);
+    }
 }
 
 void altera_dimensoes(TAG* a, int id){

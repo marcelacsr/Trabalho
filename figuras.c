@@ -1,12 +1,37 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "figuras.h"
+#include "math.h"
 #define PI 3.14
 
+typedef struct triangulo
+{
+	float base, altura;
+} TTRI;
 
-TCIR* cria_circulo(float raio){
-	TCIR* novo = (TCIR*) malloc(sizeof(TCIR));
+typedef struct circulo
+{
+	float raio;
+} TCIR;
+
+typedef struct quadrado
+{
+	float lado;
+} TQUA;
+
+typedef struct trapezio
+{
+	float base_menor, base_maior, altura;
+} TTRA;
+
+typedef struct retangulo
+{
+	float base, altura;
+} TRET;
+
+TCIR *cria_circulo(float raio)
+{
+	TCIR *novo = (TCIR *)malloc(sizeof(TCIR));
 	novo->raio = raio;
 	return novo;
 }

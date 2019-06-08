@@ -5,18 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "figuras.h"
+#include "figuras.c"
 
-typedef struct ag
-{
-    int cod;
-    int cod_pai;
-    int tipo;
-    void *info;
-    struct ag *filho; /* ponteiro para eventual primeiro filho */
-    struct ag *irmao; /* ponteiro para eventual irmão */
-} TAG;
-
-
+typedef struct ag TAG;
+typedef struct no TNO;
 
 /* deve ser permitido ao usuário do sistema: 
 (a) buscar figuras geométricas, por meio de um código único;  ok
@@ -35,6 +27,7 @@ TAG *busca(TAG *a, int cod);
 int busca2(TAG *a, int cod);
 
 //b
+void imprime_no(TAG *elem);
 void imprime(TAG *a);
 void imprime_pre(TAG *a);
 void imprime_pos(TAG *a);
@@ -52,9 +45,9 @@ void libera_destroi(TAG *a);
 void libera(TAG *a);
 
 //f TODO
-void altera_dimensoes(TAG* a, int id);
+void altera_dimensoes(TAG *a, int cod);
 
-TAG *le_arquivo(TAG *t, char *path);
+//TAG *learquivo(TAG *t, char *path);
 
 void imprime_circulo(void *elem);
 void imprime_quadrado(void *elem);
