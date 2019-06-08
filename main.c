@@ -1,4 +1,4 @@
-#include "le_arquivo.c"
+#include "menu.c"
 
 int main(void)
 {
@@ -8,17 +8,7 @@ int main(void)
     printf("arquivo lido\n preparando impressão\n");
     imprime(a);    
     printf("\n");
-    retira_figuras(a, 4);
     imprime(a);
-    retira_figuras(a, 5);
-    imprime(a);
-    retira_figuras(a, 12);
-    imprime(a);
-    retira_figuras(a, 9);
-    imprime(a);
-    retira_figuras(a, 5);
-    imprime(a);
-    retira_figuras(a, 6);
-    imprime(a);
+    menu();
     return 0;
 }
