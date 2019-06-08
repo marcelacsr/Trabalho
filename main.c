@@ -9,7 +9,7 @@ int main(void)
     a = read_arquivo(a);
     printf("arquivo lido\n preparando impressão\n");
     imprime(a);
-    menu();
+    menu(a);
     altera_dimensoes(a,2);
     printf("\n");
     imprime(a);

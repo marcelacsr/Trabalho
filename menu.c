@@ -1,4 +1,5 @@
-void menu(){
+#include "arvgen.h"
+void menu(TAG *a){
     int opt = 1;
     while(opt){
         printf("***Arvores Genericas***\n");
@@ -11,6 +12,24 @@ void menu(){
         printf("7 - Inserir um trapezio\n");
         printf("0 - Sair\n");
         scanf(" %d", &opt);
+        
+        switch (opt){
+            case 1:
+            break;
+            case 2:
+                imprime(a);
+            break;
+            case 3:
+            break;
+            case 4:
+            break;
+            case 5:
+            break;
+            case 6:
+            break;
+            case 7:
+            break;
+        }
     }
     return;
 }
