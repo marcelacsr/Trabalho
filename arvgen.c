@@ -378,3 +378,45 @@ void visita_info(int tipo,void *elem){
             imprime_quadrado(elem);
         }
 }
+
+void altera_dimensoes(TAG* a, int id){
+    TAG* p = busca(a,id);
+    void *elem = NULL;
+    if(p){
+        visita_info(a->tipo,a->info);
+        printf("Insira as novas dimensões desejadas para");
+        if(a-> tipo == 2){
+            printf(" a base e altura\n");
+            float base = 99, altura = 99;
+            scanf(" %d %d", &base, &altura);
+            elem = cria_triangulo(base, altura) ;
+        }
+        if(a-> tipo == 3){
+            printf(" a base e altura\n");
+            float base = 0, altura = 0;
+            scanf(" %d %d", &base, &altura);
+            elem = cria_retangulo(base, altura);
+        }
+        if(a-> tipo == 4){
+            printf(" a base maior, base menor e altura\n");
+            float base_maior = 0, base_menor = 0, altura = 0;
+            scanf(" %d %d %d", &base_maior, &base_menor, &altura);
+            elem = cria_trapezio(base_maior, base_menor, altura);
+        }
+        if(a-> tipo == 0){
+            printf(" o raio");
+            float raio = 0;
+            scanf(" %d", &raio);
+            elem = cria_circulo(raio);
+        }
+        if(a-> tipo == 1){
+            printf(" o lado");
+            float lado = 0;
+            scanf(" %d", &lado);
+            elem = cria_quadrado(lado);
+        }
+        void *tmp = a->info;
+        free(tmp);
+        a->info = elem;
+    }
+}

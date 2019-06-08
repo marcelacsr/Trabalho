@@ -6,7 +6,14 @@ int main(void)
     printf("Lendo arquivo.. \n");
     a = read_arquivo(a);
     printf("arquivo lido\n preparando impressão\n");
-    imprime(a);    
+    imprime(a);   
+    printf("\n\n\n\n");
+    altera_dimensoes(a,2);
+    printf("\n\n\n\n");
+    imprime(a);
+
+
+
     printf("\n");
     imprime(a);
     menu();

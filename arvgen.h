@@ -39,7 +39,7 @@ void libera_destroi (TAG *a);
 void libera(TAG *a);
 
 //f TODO
-TAG * altera_dimensoes (TAG *a, int cod);
+void altera_dimensoes(TAG* a, int id);
 
 
 TAG* le_arquivo(TAG *t, char* path);
