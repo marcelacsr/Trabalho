@@ -375,17 +375,17 @@ int max(int a,int b){
 AVL_Tree* cover(TAG *a){
     AVL_Tree *arv = (AVL_Tree*) malloc(sizeof (AVL_Tree));
     initAVL_Tree(arv);
-    converte(a,arv);
+    converte(a,&(arv));
     return arv;
 }
 
 void converte(TAG *a, AVL_Tree **arv){
     if(!a){
-        return NULL;
+        return;
     }
     TAG *p;
-    insertAVL_Tree(&(*arv),a->tipo, a->info);
+    insertAVL_Tree(*arv,a->tipo, a->info);
     for (p = a->filho; p != NULL; p = p->irmao){
-        insertAVL_Tree(&(*arv),a->tipo, p->info);
+        insertAVL_Tree(*arv,a->tipo, p->info);
     }
 }

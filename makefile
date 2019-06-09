@@ -1,2 +1,3 @@
-main: main.c arvgen.h figuras.h menu.h learquivo.h
-	gcc -o main main.c arvgen.c figuras.c menu.c learquivo.c -lm
+main: main.c arvgen.h auxiliar.h avltree.h figuras.h learquivo.h menu.h
+	gcc -o main arvgen.c  auxiliar.c  avltree.c  figuras.c  learquivo.c  main.c  menu.c -lm
+	

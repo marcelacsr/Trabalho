@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "auxiliar.h"
+#include "arvgen.c"
 /**
 Instancia um elemento recebendo um número inteiro.
  

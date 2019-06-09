@@ -4,9 +4,28 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+/*
+Estrutura de dados de nós para árvore AVL. Implementação por alocação dinâmica
+de memória.
 
-typedef struct AVL_TreeNode  AVL_TreeNode;
-typedef struct AVL_Tree AVL_Tree;
+Os elementos dos nós da lista serão instanciados com void*, para ser possível
+aceitar qualquer tipo de elemento. Quando o nó estiver sendo utilizada,
+o utilizador que será o responsável por fazer o type cast de volta para
+o tipo de dado específico.
+
+*/
+
+typedef struct AVL_TreeNode {
+    void *elem;
+    int tipo;
+    struct AVL_TreeNode *left;
+    struct AVL_TreeNode *right;
+    int fb;
+} AVL_TreeNode;
+
+typedef struct AVL_Tree {
+    struct AVL_TreeNode *root;
+} AVL_Tree;
 
 /*
 Insere um elemento na árvore binária.
