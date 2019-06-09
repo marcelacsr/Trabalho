@@ -1,5 +1,5 @@
 #include "arvgen.h"
-#include "avltree.h"
+
 
 
 /*Representação de árvore com número variável de filhos:
@@ -28,12 +28,14 @@ TAG *cria(int cod, int cod_pai, int tipo, void *elem){
     return a;
 }
 
-/* insere uma nova sub-árvore como filha de um dado,
-sempre no início da lista, por simplicidade */
-void insere(TAG *a, TAG *sa){
-    sa->irmao = a->filho;
-    a->filho = sa;
-}
+
+// TODO VERIFICA SE È USADO E REMOVER
+// /* insere uma nova sub-árvore como filha de um dado,
+// sempre no início da lista, por simplicidade */
+// void insere(TAG *a, TAG *sa){
+//     sa->irmao = a->filho;
+//     a->filho = sa;
+// }
 
 //imprime o conteúdo dos nós em pré-ordem
 //primeiro a raiz dps as sub arvores

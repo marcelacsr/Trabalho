@@ -28,48 +28,27 @@ typedef struct ag {
 
 TAG *inicializa(void);
 TAG *cria(int cod, int cod_pai, int tipo, void *elem);
-
-TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem);
-//a
-TAG *busca(TAG *a, int cod);
-int busca2(TAG *a, int cod);
-
-//b
-void imprime_no(TAG *elem);
 void imprime(TAG *a);
+void imprime_recursivo(TAG *a);
 void imprime_pre(TAG *a);
 void imprime_pos(TAG *a);
-void imprime_recursivo(TAG *a);
-void visita_info(int tipo, void *elem);
-//c
-void insere(TAG *filho, TAG *pai);
-
-//d TODO
+void imprime_bonito(TAG *a);
+TAG *busca(TAG *a, int cod);
+int busca2(TAG *a, int cod);
 TAG *retira_figuras(TAG *a, int cod);
 void troca_pai(TAG *pai, TAG *filho);
-
-//e
 void libera_destroi(TAG *a);
 void libera(TAG *a);
-
-//f TODO
+TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem);
+void visita_info(int tipo, void *elem);
 void altera_dimensoes(TAG *a, int cod);
-
-//TAG *learquivo(TAG *t, char *path);
-
-void imprime_circulo(void *elem);
-void imprime_quadrado(void *elem);
-void imprime_retangulo(void *elem);
-void imprime_trapezio(void *elem);
-void imprime_triangulo(void *elem);
-
-
-
 int busca_maior_cod(TAG *a);
 int max(int a,int b);
-
-
 AVL_Tree *cover(TAG *a);
 void converte(TAG *a, AVL_Tree **arv);
+void imprime_no(TAG *elem);
 
+//c
+// TODO VERIFICA SE È USADO E REMOVER
+// void insere(TAG *filho, TAG *pai);
 #endif
