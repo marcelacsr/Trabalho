@@ -1,4 +1,5 @@
 #include "arvgen.h"
+#include "avltree.h"
 
 
 /*Representação de árvore com número variável de filhos:
@@ -369,4 +370,22 @@ int busca_maior_cod(TAG *a){
 
 int max(int a,int b){
    return a > b ? a : b ;
+}
+
+AVL_Tree* cover(TAG *a){
+    AVL_Tree *arv = (AVL_Tree*) malloc(sizeof (AVL_Tree));
+    initAVL_Tree(arv);
+    converte(a,arv);
+    return arv;
+}
+
+void converte(TAG *a, AVL_Tree **arv){
+    if(!a){
+        return NULL;
+    }
+    TAG *p;
+    insertAVL_Tree(&(*arv),a->tipo, a->info);
+    for (p = a->filho; p != NULL; p = p->irmao){
+        insertAVL_Tree(&(*arv),a->tipo, p->info);
+    }
 }

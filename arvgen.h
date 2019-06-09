@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "figuras.h"
+#include "avltree.h"
+#include "auxiliar.h"
 
 
 typedef struct ag {
@@ -65,5 +67,9 @@ void imprime_triangulo(void *elem);
 
 int busca_maior_cod(TAG *a);
 int max(int a,int b);
+
+
+AVL_Tree *cover(TAG *a);
+void converte(TAG *a, AVL_Tree **arv);
 
 #endif

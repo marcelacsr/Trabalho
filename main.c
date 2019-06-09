@@ -1,6 +1,8 @@
 #include "arvgen.h"
 #include "learquivo.h"
 #include "menu.h"
+#include "avltree.h"
+#include "auxiliar.h"
 
 
 int main(void){
@@ -13,6 +15,8 @@ int main(void){
     printf("\n\n\n *** %d *** \n\n\n", maior);
     //menu(a);
     altera_dimensoes(a,2);
+    AVL_Tree *arv = cover(a);
+    imprime_avl(arv->root);
     printf("\n");
     imprime(a);
     printf("\n");
