@@ -18,7 +18,7 @@ void menu(TAG *a){
         switch (opt){
             case 0:
                 printf("\nSaindo...\n");
-                exit(0);
+               // exit(0);
                 return;
             break;
             case 1:

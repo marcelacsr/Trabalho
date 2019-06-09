@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "arvgen.h"
 
 TAG* read_arquivo(TAG* arv){   
     while(1){ //while true msm? 

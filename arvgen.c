@@ -1,5 +1,5 @@
 #include "arvgen.h"
-#include "figuras.h"
+
 
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
@@ -10,15 +10,6 @@
 – NULL se o nó for uma folha
 • ponteiro para a próxima sub-árvore irmão
 – NULL se for o último filho */
-
-typedef struct ag {
-    int cod;
-    int cod_pai;
-    int tipo;
-    void *info;
-    struct ag *filho; /* ponteiro para eventual primeiro filho */
-    struct ag *irmao; /* ponteiro para eventual irmão */
-} TAG;
 
 TAG *inicializa(void){
     return NULL;

@@ -1,9 +1,7 @@
 #include "arvgen.h"
-#include "arvgen.c"
 #include "learquivo.h"
-#include "learquivo.c"
 #include "menu.h"
-#include "menu.c"
+
 
 int main(void){
     TAG *a = inicializa();    
@@ -13,9 +11,8 @@ int main(void){
     imprime(a);
     int maior = busca_maior_cod(a);
     printf("\n\n\n *** %d *** \n\n\n", maior);
-
-    // menu(a);
-    // altera_dimensoes(a,2);
+    //menu(a);
+    altera_dimensoes(a,2);
     printf("\n");
     imprime(a);
     printf("\n");
