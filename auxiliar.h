@@ -2,7 +2,7 @@
 #define AUXILIAR_H
 
 #include "avltree.h"
-#include "avltree.c"
+#include "arvgen.h"
 
 /*
 Instancia um elemento recebendo um número inteiro.

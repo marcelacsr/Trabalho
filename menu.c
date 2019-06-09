@@ -1,4 +1,7 @@
 #include "menu.h"
+#include "arvgen.h"
+#include "figuras.h"
+#include "avltree.h"
 
 void menu(TAG *a){
     int opt = 1;
@@ -49,17 +52,6 @@ void menu(TAG *a){
         }
     }
     return;
-}
-
-void menu_busca_figura(TAG *a){
-    int cod = 0;
-    printf("\n*** Buscar Figuras ***\n");
-    printf("Insira o cod da figura que deseja buscar\n");
-    scanf(" %d", &cod);
-    TAG *p = NULL;
-    p = busca(a, cod);
-    visita_info(p->tipo, p->info);
-    menu(a);
 }
 
 void menu_nova_figura(TAG *a){
@@ -159,5 +151,16 @@ void menu_altera_dimensoes(TAG *a){
     printf("Insira o cod do elemento que deseja alterar as dimensoes\n");
     scanf(" %d", &cod);
     altera_dimensoes(a, cod);
+    menu(a);
+}
+
+void menu_busca_figura(TAG *a){
+    int cod = 0;
+    printf("\n*** Buscar Figuras ***\n");
+    printf("Insira o cod da figura que deseja buscar\n");
+    scanf(" %d", &cod);
+    TAG *p = NULL;
+    p = busca(a, cod);
+    visita_info(p->tipo, p->info);
     menu(a);
 }

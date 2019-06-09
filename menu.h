@@ -3,6 +3,7 @@
 
 #include "arvgen.h"
 #include "figuras.h"
+#include "avltree.h"
 
 void menu(TAG *a);
 void menu_nova_figura(TAG *a);
