@@ -9,12 +9,12 @@ Insere um elemento na árvore binária.
 Retorna 1, caso tenha inserido o elemento com sucesso, e 0 caso contrário.
 
  */
-int insertAVL_Tree(AVL_Tree *tree,int tipo, void *elem) {
+int insertAVL_Tree(AVL_Tree *tree, int id, int tipo, void *elem) {
     if (!tree)return 0;
     int *h = (int*) malloc(sizeof (int));
     *h = 1;
     AVL_TreeNode **ptp = &(tree->root);
-    int x = insertAVL_TreeR(ptp, tipo, elem, h);
+    int x = insertAVL_TreeR(ptp,id, tipo, elem, h);
     return x;
 }
 
@@ -22,9 +22,11 @@ int insertAVL_Tree(AVL_Tree *tree,int tipo, void *elem) {
 Função recursiva de inserção na árvore AVL.
 
  */
-int insertAVL_TreeR(AVL_TreeNode **node,int tipo, void *elem, int *h) {
+int insertAVL_TreeR(AVL_TreeNode **node, int id, int tipo, void *elem, int *h) {
     if (!*node) {//se o nó não existir, é criado um novo no
+        printf("Inserindo na AVL o ID %d\n",id);
         AVL_TreeNode *novo = (AVL_TreeNode*) malloc(sizeof (AVL_TreeNode));
+        novo->id = id;
         novo->tipo = tipo;
         novo->elem = elem;
         novo->fb = 0;
@@ -34,12 +36,12 @@ int insertAVL_TreeR(AVL_TreeNode **node,int tipo, void *elem, int *h) {
         *h = 1; //haverá mudança na altura
         return 1;
     } else {
-        if (*(int*) (*node)->elem == *(int*) elem) {
+        if ((*node)->id == id) {
             *h = 0;
             return 0;
         }
-        if (*(int*) elem < *(int*) (*node)->elem) {
-            insertAVL_TreeR(&((*node)->left),tipo, elem, h);
+        if ( id < (*node)->id) {
+            insertAVL_TreeR(&((*node)->left), id, tipo, elem, h);
             if (*h == 1) { //se h = 1 então houve mudança na altura da arvore então terã de recalcular o FB e talvez rebalancear. 
                 //Se rebalancear então não haverá mais mudança na altura.
                 if ((*node)->fb == 0) { //Se fb era 0 então estava balanceada, 
@@ -56,8 +58,8 @@ int insertAVL_TreeR(AVL_TreeNode **node,int tipo, void *elem, int *h) {
                 }
             }
         } else
-            if (*(int*) elem > *(int*) (*node)->elem) {
-            insertAVL_TreeR(&((*node)->right),tipo, elem, h);
+            if ( id > (*node)->id) {
+            insertAVL_TreeR(&((*node)->right), id, tipo, elem, h);
             if (*h == 1) {
                 if ((*node)->fb == 1) {//Se fb era 1 então a direita ja tinha alguem, faz uma rotação para esquerda e a altura não muda
                     LR(&(*node), h);
@@ -129,21 +131,21 @@ void RR(AVL_TreeNode **node, int *h) {//Caso 1
     *h = 0;
 }
 
-int searchAVL_Tree(AVL_Tree *tree, void *elem) {
+AVL_TreeNode* searchAVL_Tree(AVL_Tree *tree,int id) {
     if (!tree)return 0;
     AVL_TreeNode *x = tree->root;
     if (!tree->root)return 0;
-    if (*(int*) elem == *(int*) tree->root->elem)
-        return 1; //Qual o sentido da busca retornar 1? Não deveria retornar o elemento ou índice?
+    if (id == tree->root->id)
+        return x; //Qual o sentido da busca retornar 1? Não deveria retornar o elemento ou índice?
     else {
-        if (*(int*) elem < *(int*) x->elem) {
+        if (id <  x-> id) {
             AVL_Tree * p = (AVL_Tree*) malloc(sizeof (AVL_Tree));
             p->root = x->left;
-            return searchAVL_Tree(p, elem);
-        } else if (*(int*) elem > *(int*) x->elem) {
+            return searchAVL_Tree(p, id);
+        } else if ( id > x-> id) {
             AVL_Tree *p = (AVL_Tree*) malloc(sizeof (AVL_Tree));
             p->root = x->right;
-            return searchAVL_Tree(p, elem);
+            return searchAVL_Tree(p, id);
         }
     }
     return 0;

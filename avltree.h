@@ -18,6 +18,7 @@ o tipo de dado específico.
 typedef struct AVL_TreeNode {
     void *elem;
     int tipo;
+    int id;
     struct AVL_TreeNode *left;
     struct AVL_TreeNode *right;
     int fb;
@@ -33,14 +34,14 @@ Insere um elemento na árvore binária.
 Retorna 1, caso tenha inserido o elemento com sucesso, e 0 caso contrário.
 
  */
-int insertAVL_Tree(AVL_Tree *tree,int tipo, void *elem);
+int insertAVL_Tree(AVL_Tree *tree, int id, int tipo, void *elem);
 
 
 /*
 Função recursiva de inserção na árvore AVL.
 
  */
-int insertAVL_TreeR(AVL_TreeNode **node,int tipo, void *elem, int *h);
+int insertAVL_TreeR(AVL_TreeNode **node, int id, int tipo, void *elem, int *h);
 
 
 /*
@@ -49,7 +50,7 @@ Busca um elemento em uma árvore AVL.
 Retorna 1, caso tenha encontrado o elemento, e 0 caso contrário.
 
  */
-int searchAVL_Tree(AVL_Tree *tree, void *elem);
+AVL_TreeNode* searchAVL_Tree(AVL_Tree *tree, int id);
 
 
 void RR(AVL_TreeNode **node, int *h);
