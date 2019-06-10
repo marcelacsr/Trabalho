@@ -164,6 +164,12 @@ void menu_busca_figura(TAG *a){
     scanf(" %d", &cod);
     TAG *p = NULL;
     p = busca(a, cod);
-    visita_info(p->tipo, p->info);
+    if (p){
+        visita_info(p->tipo, p->info);
+    }
+    else
+    {
+        printf("\nCódigo não encontrado!\n");
+    }    
     menu(a);
 }
