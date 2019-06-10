@@ -1,7 +1,5 @@
 #include "arvgen.h"
 
-
-
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
 • um nó aponta apenas para seu primeiro (prim) filho
@@ -244,9 +242,8 @@ TRIANGULO
 TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
     if (!a){
         //printf("Árvore não existe\n");
-        if (cod_pai != 0)
-            printf("");
-            //printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
+        if (cod_pai != 0)            
+            printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
         else{
             a = cria(cod, cod_pai, tipo, elem);
             //printf("Nó raiz criado!");
