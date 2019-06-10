@@ -1,6 +1,14 @@
 #include "arvgen.h"
 
 
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 /*Representação de árvore com número variável de filhos:
 – utiliza uma “lista de filhos”:
@@ -46,8 +54,8 @@ void imprime(TAG *a){
     }
     if (a){
         TAG *p;
-        printf("<%d\n", a->cod);
-        //visita_info(a->tipo, a->info);
+        printf("<"MAG"%d "RESET, a->cod);
+        visita_info(a->tipo, a->info);
         for (p = a->filho; p != NULL; p = p->irmao)
         {
             imprime(p); /* imprime filhos */
@@ -291,29 +299,24 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
         //printf("\nfaz pai->filho apontar para novo_filho\n");
         pai->filho = novo_no_filho;
     }
-    printf("\n");
+    //printf("\n");
     return a;
 }
 
 void visita_info(int tipo, void *elem){
-    if (tipo == 2)
-    {
+    if (tipo == 2){
         imprime_triangulo(elem);
     }
-    if (tipo == 3)
-    {
+    if (tipo == 3){
         imprime_retangulo(elem);
     }
-    if (tipo == 4)
-    {
+    if (tipo == 4){
         imprime_trapezio(elem);
     }
-    if (tipo == 0)
-    {
+    if (tipo == 0){
         imprime_circulo(elem);
     }
-    if (tipo == 1)
-    {
+    if (tipo == 1){
         imprime_quadrado(elem);
     }
 }

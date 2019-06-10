@@ -9,6 +9,14 @@
 #define RET 3
 #define TRA 4
 
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
 
 
 TCIR *cria_circulo(float raio){
@@ -50,31 +58,31 @@ Impressão: Imprimir atritutos e área
 */
 void imprime_circulo(void *elem){
 	TCIR *p = (TCIR *)elem;
-	printf("CIR Círculo \nRaio: %.2f - Área: %.2f\n\n", 
+	printf(RED"Círculo Raio: %.2f - Área: %.2f"RESET, 
 	p->raio, area_circulo(p));
 }
 
 void imprime_quadrado(void *elem){
 	TQUA *p = (TQUA *)elem;
-	printf("QUA Quadrado \nLado: %.2f - Área: %.2f\n\n",
+	printf(GRN"Quadrado Lado: %.2f - Área: %.2f"RESET,
 	p->lado, area_quadrado(p));
 }
 
 void imprime_retangulo(void *elem){
 	TRET *p = (TRET *)elem;
-	printf("RET Retangulo \nBase: %.2f - Altura: %.2f - Área: %.2f\n\n",
+	printf(YEL"Retangulo Base: %.2f - Altura: %.2f - Área: %.2f"RESET,
 	p->base, p->altura, area_retangulo(p));
 }
 
 void imprime_trapezio(void *elem){
 	TTRA *p = (TTRA *)elem;
-	printf("TRA Trapezio \nBase Menor: %.2f - Base Maior: %.2f - Altura: %.2f - Área: %.2f\n\n",
+	printf(BLU"Trapezio Base Menor: %.2f - Base Maior: %.2f - Altura: %.2f - Área: %.2f"RESET,
 	p->base_maior, p->base_menor, p->altura, area_trapezio(p));
 }
 
 void imprime_triangulo(void *elem){
 	TTRI *p = (TTRI *)elem;
-	printf("TRI Triangulo \nBase: %.2f - Altura: %.2f - Área: %.2f\n\n",
+	printf(CYN"Triangulo Base: %.2f - Altura: %.2f - Área: %.2f"RESET,
 	p->base, p->altura, area_triangulo(p));
 }
 
