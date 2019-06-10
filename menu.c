@@ -5,6 +5,7 @@
 
 void menu(TAG *a){
     int opt = 1;
+    AVL_Tree *arv;
     while(opt){
         printf("\n***Arvores Genericas***\n");
         printf("1 - Buscar figura geométrica\n");
@@ -40,7 +41,8 @@ void menu(TAG *a){
                 menu_altera_dimensoes(a);
             break;
             case 6:
-            //TODO
+                arv = cover(a);
+                imprime_avl(arv->root);
             break;
             case 7:
             //TODO
