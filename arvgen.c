@@ -390,3 +390,20 @@ void converte(TAG *a, AVL_Tree **arv){
         converte(p,&(*arv));
     }
 }
+
+TAB* coverter_em_TAB(TAG *a){
+    TAB *arvb = (TAB*) malloc(sizeof (TAB));
+    arvb = Cria(2);
+    return arvb;
+}
+
+void converte_em_b(TAG *a, TAB** b){
+    if(!a){
+        return;
+    }
+    TAG *p;
+    *b = Insere(*b, a->cod, a->tipo, a->info,2);
+    for (p = a->filho; p != NULL; p = p->irmao){
+        converte_em_b(p,&(*b));
+    }
+}

@@ -1,19 +1,17 @@
 #include "arvb.h"
 
-cont int t = 2;
+const int t = 2;
 
 //TODO
-TAB *Cria(int t, int cod, int tipo, void *elem){
+TAB *Cria(int t){
   TAB* novo = (TAB*)malloc(sizeof(TAB));
   novo->nchaves = 0;
-  novo->chave =(TAG**)malloc(sizeof(TAG*)*((t*2)-1));
-  novo->cod = cod;
-  novo->tipo = tipo;
-  novo->elem = elem;
+  novo->chave =(int*)malloc(sizeof(int*)*((t*2)-1));
   novo->folha=1;
   novo->filho = (TAB**)malloc(sizeof(TAB*)*t*2);
   int i;
   for(i=0; i<(t*2); i++) novo->filho[i] = NULL;
+  for(i=0; i<(t*2); i++) novo->elem[i] = NULL;
   return novo;
 }
 
@@ -83,11 +81,13 @@ TAB *Divisao(TAB *x, int i, TAB* y, int t){
 }
 
 
-TAB *Insere_Nao_Completo(TAB *x, int k, int t){
+TAB *Insere_Nao_Completo(TAB *x, int k, int tipo, void* elem, int t){
   int i = x->nchaves-1;
   if(x->folha){
     while((i>=0) && (k<x->chave[i])){
       x->chave[i+1] = x->chave[i];
+      x->tipo[i+1] = x->tipo[i];
+      x->elem[i+1] = x->elem[i];
       i--;
     }
     x->chave[i+1] = k;
@@ -100,16 +100,18 @@ TAB *Insere_Nao_Completo(TAB *x, int k, int t){
     x = Divisao(x, (i+1), x->filho[i], t);
     if(k>x->chave[i]) i++;
   }
-  x->filho[i] = Insere_Nao_Completo(x->filho[i], k, t);
+  x->filho[i] = Insere_Nao_Completo(x->filho[i], k, tipo, elem, t);
   return x;
 }
 
 
-TAB *Insere(TAB *T, TAG *no, int t){
-  if(Busca(T, no->cod)) return T;
+TAB *Insere(TAB *T, int k, int tipo, void* elem, int t){
+  if(Busca(T,k)) return T;
   if(!T){
     T=Cria(t);
-    T->chave[0] = no;
+    T->chave[0] = k;
+    T->tipo[0] = tipo;
+    T->elem[0] = elem;
     T->nchaves=1;
     return T;
   }
@@ -119,20 +121,20 @@ TAB *Insere(TAB *T, TAG *no, int t){
     S->folha = 0;
     S->filho[0] = T;
     S = Divisao(S,1,T,t);
-    S = Insere_Nao_Completo(S,no,t);
+    S = Insere_Nao_Completo(S, k, tipo, elem, t);
     return S;
   }
-  T = Insere_Nao_Completo(T,no,t);
+  T = Insere_Nao_Completo(T, k, tipo, elem, t);
   return T;
 }
 
 //não precisa remover, apenas criar e imprimir
-TAB* remover(TAB* arv, TAG *no, int ch, int t){
+TAB* remover(TAB* arv, int ch, int t){
   if(!arv) return arv;
   int i;
-  printf("Removendo %d...\n", no->cod);
-  for(i = 0; i<arv->nchaves && arv->chave[i] < no->cod; i++);
-  if(i < arv->nchaves && no->cod == arv->chave[i]){ //CASOS 1, 2A, 2B e 2C
+  printf("Removendo %d...\n", ch);
+  for(i = 0; i<arv->nchaves && arv->chave[i] < ch; i++);
+  if(i < arv->nchaves && ch == arv->chave[i]){ //CASOS 1, 2A, 2B e 2C
     if(arv->folha){ //CASO 1
       printf("\nCASO 1\n");
       int j;
@@ -163,7 +165,7 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
       printf("\nCASO 2C\n");
       TAB *y = arv->filho[i];
       TAB *z = arv->filho[i+1];
-      y->chave[y->nchaves] = no->cod;          //colocar ch ao final de filho[i]
+      y->chave[y->nchaves] = ch;          //colocar ch ao final de filho[i]
       int j;
       for(j=0; j<t-1; j++)                //juntar chave[i+1] com chave[i]
         y->chave[t+j] = z->chave[j];
@@ -176,7 +178,7 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
         arv->filho[j] = arv->filho[j+1];
       arv->filho[j] = NULL; //Campello
       arv->nchaves--;
-      arv->filho[i] = remover(arv->filho[i], no->cod, t);
+      arv->filho[i] = remover(arv->filho[i], ch, t);
       return arv;   
     }   
   }
@@ -197,7 +199,7 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
       for(j=0; j < z->nchaves; j++)       //ajustar filhos de z
         z->filho[j] = z->filho[j+1];
       z->nchaves--;
-      arv->filho[i] = remover(arv->filho[i], no->cod, t);
+      arv->filho[i] = remover(arv->filho[i], ch, t);
       return arv;
     }
     if((i > 0) && (!z) && (arv->filho[i-1]->nchaves >=t)){ //CASO 3A
@@ -213,7 +215,7 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
       arv->chave[i-1] = z->chave[z->nchaves-1];   //dar a arv uma chave de z
       y->filho[0] = z->filho[z->nchaves];         //enviar ponteiro de z para o novo elemento em y
       z->nchaves--;
-      arv->filho[i] = remover(y, no->cod, t);
+      arv->filho[i] = remover(y, ch, t);
       return arv;
     }
     if(!z){ //CASO 3B
@@ -237,7 +239,7 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
           arv->filho[j+1] = arv->filho[j+2];
         }
         arv->nchaves--;
-        arv = remover(arv, no->cod, t);
+        arv = remover(arv, ch, t);
         return arv;
       }
       if((i > 0) && (arv->filho[i-1]->nchaves == t-1)){ 
@@ -260,17 +262,16 @@ TAB* remover(TAB* arv, TAG *no, int ch, int t){
         }
         arv->nchaves--;
         arv->filho[i-1] = z;
-        arv = remover(arv, no->cod, t);
+        arv = remover(arv, ch, t);
         return arv;
       }
     }
   }  
-  arv->filho[i] = remover(arv->filho[i], no->cod, t);
+  arv->filho[i] = remover(arv->filho[i], ch, t);
   return arv;
 }
 
-
-TAB* retira(TAB* arv, TAG *no, int t){
-  if(!arv || !Busca(arv, no->cod)) return arv;
-  return remover(arv, no, t);
+TAB* retira(TAB* arv, int k, int t){
+  if(!arv || !Busca(arv, k)) return arv;
+  return remover(arv, k, t);
 }

@@ -7,6 +7,7 @@
 #include "figuras.h"
 #include "avltree.h"
 #include "auxiliar.h"
+#include "arvb.h"
 
 
 typedef struct ag {
@@ -16,7 +17,7 @@ typedef struct ag {
     void *info;
     struct ag *filho; /* ponteiro para eventual primeiro filho */
     struct ag *irmao; /* ponteiro para eventual irmão */
-} TAG;
+}TAG;
 
 /* deve ser permitido ao usuário do sistema: 
 (a) buscar figuras geométricas, por meio de um código único;  ok
@@ -46,7 +47,8 @@ int busca_maior_cod(TAG *a);
 int max(int a,int b);
 AVL_Tree *cover(TAG *a);
 void converte(TAG *a, AVL_Tree **arv);
-void imprime_no(TAG *elem);
+TAB *coverter_em_TAB(TAG *a);
+void converte_em_b(TAG *a, TAB** b);
 
 //c
 // TODO VERIFICA SE È USADO E REMOVER
