@@ -21,8 +21,8 @@ void menu(TAG *a){
 
         switch (opt){
             case 0:
+                libera_destroi(a);
                 printf("\nSaindo...\n");
-               // exit(0);
                 return;
             break;
             case 1:
@@ -43,6 +43,7 @@ void menu(TAG *a){
             case 6:
                 arv = cover(a);
                 imprime_avl(arv->root);
+                //TODO Liberar a arvore AVL após a impressão e conversão
             break;
             case 7:
             //TODO
