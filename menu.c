@@ -75,7 +75,7 @@ void menu_nova_figura(TAG *a){
 
         switch (op){
             case 0:
-                menu(a);
+                return;
             break;
             case 1:
                 printf("Insira as novas dimensões desejadas para o raio\n");
