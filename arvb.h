@@ -3,6 +3,9 @@
 #include "arvgen.h"
 
 typedef struct ArvB{
+  void *elem;
+  int tipo;
+  int cod;
   int nchaves, folha, *chave;
   struct ArvB **filho;
 }TAB;

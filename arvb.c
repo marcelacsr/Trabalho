@@ -1,9 +1,15 @@
 #include "arvb.h"
 
-TAB *Cria(int t){
+cont int t = 2;
+
+//TODO
+TAB *Cria(int t, int cod, int tipo, void *elem){
   TAB* novo = (TAB*)malloc(sizeof(TAB));
   novo->nchaves = 0;
   novo->chave =(TAG**)malloc(sizeof(TAG*)*((t*2)-1));
+  novo->cod = cod;
+  novo->tipo = tipo;
+  novo->elem = elem;
   novo->folha=1;
   novo->filho = (TAB**)malloc(sizeof(TAB*)*t*2);
   int i;
@@ -11,7 +17,7 @@ TAB *Cria(int t){
   return novo;
 }
 
-
+// TODO
 TAB *Libera(TAB *a){
   if(a){
     if(!a->folha){
@@ -25,7 +31,7 @@ TAB *Libera(TAB *a){
   }
 }
 
-
+//TODO
 void Imprime(TAB *a, int andar){
   if(a){
     int i,j;
@@ -38,7 +44,7 @@ void Imprime(TAB *a, int andar){
   }
 }
 
-
+//TODO
 TAB *Busca(TAB *x, int ch){
   TAB *resp = NULL;
   if(!x) return resp;
@@ -49,7 +55,7 @@ TAB *Busca(TAB *x, int ch){
   return Busca(x->filho[i], ch);
 }
 
-
+//TODO
 TAB *Inicializa(){
   return NULL;
 }
@@ -120,7 +126,7 @@ TAB *Insere(TAB *T, TAG *no, int t){
   return T;
 }
 
-//TODO
+//não precisa remover, apenas criar e imprimir
 TAB* remover(TAB* arv, TAG *no, int ch, int t){
   if(!arv) return arv;
   int i;
