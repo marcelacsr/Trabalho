@@ -20,12 +20,13 @@ int main(void)
     //AVL_Tree *arv = cover(a);
     //imprime_avl(arv->root);
     //printf("\n\n\n");
-    //TAB *arvore = Inicializa();
-    TAB *arvore = Cria(2);
-    Imprime(arvore, 2);
+    TAB *arvore = Inicializa();
+    //TAB *arvore = Cria(2);
+    //Imprime(arvore, 2);
 
-    int num = 0, from, t;
+    int num = 0, from, t = 2;
     while(num != -1){
+        printf(" %d", t);
     printf("Digite um numero para adicionar. 0 para imprimir. -9 para remover e -1 para sair\n");
     scanf(" %d", &num);
     if (num == -9)
