@@ -61,5 +61,6 @@ void LR(AVL_TreeNode **node, int *h);
 
 void initAVL_Tree(AVL_Tree *tree);
 
+void libera(AVL_Tree *tree);
 
 #endif

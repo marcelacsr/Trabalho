@@ -43,7 +43,7 @@ void menu(TAG *a){
             case 6:
                 arv = cover(a);
                 imprime_avl(arv->root);
-                //TODO Liberar a arvore AVL após a impressão e conversão
+                libera(arv);
             break;
             case 7:
             //TODO
