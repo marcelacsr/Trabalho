@@ -50,7 +50,4 @@ void converte(TAG *a, AVL_Tree **arv);
 TAB *coverter_em_TAB(TAG *a);
 void converte_em_b(TAG *a, TAB **b);
 
-//c
-// TODO VERIFICA SE È USADO E REMOVER
-// void insere(TAG *filho, TAG *pai);
 #endif
