@@ -48,7 +48,7 @@ int max(int a,int b);
 AVL_Tree *cover(TAG *a);
 void converte(TAG *a, AVL_Tree **arv);
 TAB *coverter_em_TAB(TAG *a);
-void converte_em_b(TAG *a, TAB** b);
+void converte_em_b(TAG *a, TAB **b);
 
 //c
 // TODO VERIFICA SE È USADO E REMOVER

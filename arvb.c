@@ -1,4 +1,6 @@
+#include <stdlib.h>
 #include "arvb.h"
+#include "arvgen.h"
 
 const int t = 2;
 
@@ -7,11 +9,14 @@ TAB *Cria(int t){
   TAB* novo = (TAB*)malloc(sizeof(TAB));
   novo->nchaves = 0;
   novo->chave =(int*)malloc(sizeof(int*)*((t*2)-1));
+  novo->tipo =(int*)malloc(sizeof(int*)*((t*2)-1));
   novo->folha=1;
   novo->filho = (TAB**)malloc(sizeof(TAB*)*t*2);
+  novo->elem = (void*)malloc(sizeof(void*)*((t*2)-1));
   int i;
   for(i=0; i<(t*2); i++) novo->filho[i] = NULL;
-  for(i=0; i<(t*2); i++) novo->elem[i] = NULL;
+  for(i=0; i<(t*2)-1; i++) novo->elem[i] = NULL;
+  for(i=0; i<(t*2)-1; i++) novo->tipo[i] = NULL;
   return novo;
 }
 
@@ -37,6 +42,7 @@ void Imprime(TAB *a, int andar){
       Imprime(a->filho[i],andar+1);
       for(j=0; j<=andar; j++) printf("   ");
       printf("%d\n", a->chave[i]);
+      //visita_info(a->tipo[i],a->elem[i]);
     }
     Imprime(a->filho[i],andar+1);
   }
