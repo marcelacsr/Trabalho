@@ -139,7 +139,7 @@ TAG *retira_figuras(TAG *a, int cod){
         printf("Elemento é RAIZ, não pode ser removido!\n");
         return a;
     }
-    //printf("\nRemovendo o elemento de código: %d\n", cod);
+    printf("\nRemovendo o elemento de código: %d\n", cod);
     TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover
     TAG *atual = pai->filho;
     TAG *ant = NULL;
