@@ -49,4 +49,5 @@ float area_quadrado(TQUA *elem);
 float area_circulo(TCIR *elem);
 float area_retangulo(TRET *elem);
 
+void *copia_elem(int tipo, void* elem);
 #endif

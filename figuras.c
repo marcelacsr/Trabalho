@@ -46,6 +46,8 @@ TRET *cria_retangulo(float base, float altura){
 }
 
 TTRA *cria_trapezio(float base_menor, float base_maior, float altura){
+	//TODO verificar qual das duas entradas será a maior e trocar. 
+	//Pois a besta do usuário pode inverter
 	TTRA *novo = (TTRA *)malloc(sizeof(TTRA));
 	novo->base_menor = base_menor;
 	novo->base_maior = base_maior;
@@ -104,4 +106,28 @@ float area_circulo(TCIR *elem){
 
 float area_retangulo(TRET *elem){
 	return (elem->base * elem->altura);
+}
+
+void *copia_elem(int tipo, void* elem){
+	if(tipo = CIR){
+		TCIR *p = (TCIR *)elem;
+		return cria_circulo(p->raio);
+	}
+	if(tipo = QUA){
+		TQUA *p = (TQUA *)elem;
+		return cria_quadrado(p->lado);
+	}
+	if(tipo = TRI){
+		TTRI *p = (TTRI *)elem;
+		return cria_triangulo(p->base, p->altura);
+	}
+	if(tipo = RET){
+		TRET *p = (TRET *)elem;
+		return cria_retangulo(p->base, p->altura);
+	}
+	if(tipo = TRA){
+		TTRA *p = (TTRA *)elem;
+		return cria_trapezio(p->base_menor, p->base_maior, p->altura);
+	}
+	return NULL;
 }
