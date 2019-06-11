@@ -46,8 +46,11 @@ TRET *cria_retangulo(float base, float altura){
 }
 
 TTRA *cria_trapezio(float base_menor, float base_maior, float altura){
-	//TODO verificar qual das duas entradas será a maior e trocar. 
-	//Pois a besta do usuário pode inverter
+	if(base_maior < base_menor){
+		int tmp = base_maior;
+		base_maior = base_menor;
+		base_menor = tmp;
+	}
 	TTRA *novo = (TTRA *)malloc(sizeof(TTRA));
 	novo->base_menor = base_menor;
 	novo->base_maior = base_maior;
@@ -79,7 +82,7 @@ void imprime_retangulo(void *elem){
 void imprime_trapezio(void *elem){
 	TTRA *p = (TTRA *)elem;
 	printf(BLU"Trapezio Base Menor: %.2f - Base Maior: %.2f - Altura: %.2f - Área: %.2f"RESET,
-	p->base_maior, p->base_menor, p->altura, area_trapezio(p));
+	p->base_menor, p->base_maior, p->altura, area_trapezio(p));
 }
 
 void imprime_triangulo(void *elem){
