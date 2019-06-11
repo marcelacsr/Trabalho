@@ -369,7 +369,7 @@ void converte(TAG *a, AVL_Tree **arv){
     }
     TAG *p;
     
-    insertAVL_Tree(*arv, a->cod, a->tipo, a->info);
+    insertAVL_Tree(*arv, a->cod, a->tipo, copia_elem(a->tipo,a->info));
     for (p = a->filho; p != NULL; p = p->irmao){
         converte(p,&(*arv));
     }
