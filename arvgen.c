@@ -302,7 +302,7 @@ void altera_dimensoes(TAG* a, int id){
     TAG* p = busca(a,id);
     void *elem = NULL;
     if(p){
-        printf("Figura a ser alterada: ");
+        printf("Figura a ser alterada: \n");
         visita_info(p->tipo, p->info);
         printf("Insira as novas dimensões desejadas para");
         if(p-> tipo == 2){
