@@ -24,7 +24,6 @@ Função recursiva de inserção na árvore AVL.
  */
 int insertAVL_TreeR(AVL_TreeNode **node, int id, int tipo, void *elem, int *h) {
     if (!*node) {//se o nó não existir, é criado um novo no
-        printf("Inserindo na AVL o ID %d\n",id);
         AVL_TreeNode *novo = (AVL_TreeNode*) malloc(sizeof (AVL_TreeNode));
         novo->id = id;
         novo->tipo = tipo;
