@@ -14,8 +14,8 @@ void menu(TAG *a){
         printf("\n***Arvores Genericas***\n");
         printf("1 - Buscar figura geométrica\n");
         printf("2 - Imprimir a arvore\n");
-        printf("3 - Inserir uma figura\n"); //ok
-        printf("4 - Retirar uma figura\n"); //ok
+        printf("3 - Inserir uma figura\n");
+        printf("4 - Retirar uma figura\n");
         printf("5 - Alterar as dimensoes de uma figura\n");
         printf("6 - Converter para arvore AVL\n");
         printf("7 - Converter para arvore B\n");
@@ -61,6 +61,9 @@ void menu(TAG *a){
                 a = NULL;
                 printf("Arvore destruída!");
             break;
+            default:
+                printf("Opção Invalida\n");     
+            break;
         }
     }
     return;
@@ -68,11 +71,6 @@ void menu(TAG *a){
 
 void menu_nova_figura(TAG *a){
     int op = 1;
-    void *elem = NULL;
-    int cod_pai = 0;
-    float base = 0;
-    float altura = 0;
-    float lado = 0;
     while(1){
         printf("\n*** Figuras ***\n");
         printf("1 - Inserir um circulo\n");
@@ -81,64 +79,60 @@ void menu_nova_figura(TAG *a){
         printf("4 - Inserir um retangulo\n");
         printf("5 - Inserir um trapezio\n");
         printf("0 - Voltar ao Menu Principal\n");
-        scanf(" %d", &op);
-
+        op = read_int("");
         switch (op){
+            int cod_pai = 0;
+            float base = 0;
+            float altura = 0;
+            float lado = 0;
+            float raio = 0;
+            float base_menor = 0;
+            float base_maior = 0;
+            void *elem = NULL;
             case 0:
                 return;
             break;
             case 1:
-                printf("Insira as novas dimensões do circulo: para o raio\n");
-                float raio = 0;
-                cod_pai = 0;
-                scanf(" %f", &raio);
+                printf("Insira a nova dimensão do circulo:\n");
+                raio = read_float("raio\n");
                 elem = cria_circulo(raio);
-                dialogo_codigo_pai();
-                scanf(" %d", &cod_pai);
+                cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
             case 2:
-                lado = 0;
-                cod_pai = 0;
-                lado = read_float("Insira as novas dimensões do quadrado: para o lado\n");
+                printf("Insira as novas dimensões do quadrado:\n");
+                lado = read_float("lado \n");
                 elem = cria_quadrado(lado);
-                dialogo_codigo_pai();
-                scanf(" %d", &cod_pai);
+                cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 1, elem);
             break;
             case 3:
-                printf("Insira as novas dimensões do triangulo: para a base e a altura\n");
-                base = 0;
-                altura = 0;
-                int cod_pai = 0;
-                scanf(" %f %f", &base, &altura);
+                printf("Insira as novas dimensões do triangulo:\n");
+                base = read_float("base ");
+                altura = read_float("altura ");
                 elem = cria_triangulo(base,altura);
-                dialogo_codigo_pai();
-                scanf(" %d", &cod_pai);
+                cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 2, elem);
             break;
             case 4: 
-                printf("Insira as novas dimensões do retangulo: para a base e a altura\n");
-                base = 0;
-                altura = 0;
-                cod_pai = 0;
-                scanf(" %f %f", &base, &altura);
+                printf("Insira as novas dimensões do retangulo:\n");
+                base = read_float("base ");
+                altura = read_float("altura ");
                 elem = cria_retangulo(base,altura);
-                dialogo_codigo_pai();
-                scanf(" %d", &cod_pai);
+                cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 3, elem);
             break;
             case 5:
-                printf("Insira as novas dimensões do trapézio: base menor, a base maior e a altura\n");
-                float base_menor = 0;
-                float base_maior = 0;
-                float altura = 0;
-                cod_pai = 0;
-                scanf(" %f %f %f", &base_menor, &base_maior, &altura);
+                printf("Insira as novas dimensões do trapézio: , a base maior e a altura\n");
+                base_menor = read_float("base menor ");
+                base_maior = read_float("base maior ");
+                altura = read_float("altura ");
                 elem = cria_trapezio(base_menor, base_maior, altura);
-                dialogo_codigo_pai();
-                scanf(" %d", &cod_pai);
+                cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 4, elem);
+            break;
+            default:
+                printf("Opção Invalida\n");     
             break;
         }
     }
@@ -178,6 +172,6 @@ void menu_busca_figura(TAG *a){
     }    
 }
 
-void dialogo_codigo_pai(){
-    printf("Insira o código do pai\n");
+int dialogo_codigo_pai(){
+    return read_int("Insira o código do pai\n");
 }
