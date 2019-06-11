@@ -86,7 +86,7 @@ void menu_nova_figura(TAG *a){
                 cod_pai = 0;
                 scanf(" %f", &raio);
                 elem = cria_circulo(raio);
-                printf("Insira o código do pai");
+                dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
@@ -96,7 +96,7 @@ void menu_nova_figura(TAG *a){
                 cod_pai = 0;
                 scanf(" %f", &lado);
                 elem = cria_quadrado(lado);
-                printf("Insira o código do pai");
+                dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 1, elem);
             break;
@@ -109,7 +109,7 @@ void menu_nova_figura(TAG *a){
                 int cod_pai = 0;
                 scanf(" %f %f", &base, &altura);
                 elem = cria_triangulo(base,altura);
-                printf("Insira o código do pai");
+                dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 2, elem);
             break;
@@ -120,7 +120,7 @@ void menu_nova_figura(TAG *a){
                 cod_pai = 0;
                 scanf(" %f %f", &base, &altura);
                 elem = cria_retangulo(base,altura);
-                printf("Insira o código do pai");
+                dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 3, elem);
             break;
@@ -132,7 +132,7 @@ void menu_nova_figura(TAG *a){
                 cod_pai = 0;
                 scanf(" %f %f %f", &base_maior, &base_menor, &altura);
                 elem = cria_trapezio(base_menor, base_maior, altura);
-                printf("Insira o código do pai");
+                dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 4, elem);
             break;
@@ -172,4 +172,8 @@ void menu_busca_figura(TAG *a){
     {
         printf("\nCódigo não encontrado!\n");
     }    
+}
+
+void dialogo_codigo_pai(){
+    printf("Insira o código do pai\n");
 }
