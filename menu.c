@@ -125,12 +125,12 @@ void menu_nova_figura(TAG *a){
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 3, elem);
             break;
             case 5:
-                printf("Insira as novas dimensões do trapézio: base maior, a base menor e a altura\n");
+                printf("Insira as novas dimensões do trapézio: base menor, a base maior e a altura\n");
                 float base_menor = 0;
                 float base_maior = 0;
                 float altura = 0;
                 cod_pai = 0;
-                scanf(" %f %f %f", &base_maior, &base_menor, &altura);
+                scanf(" %f %f %f", &base_menor, &base_maior, &altura);
                 elem = cria_trapezio(base_menor, base_maior, altura);
                 dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
