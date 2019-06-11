@@ -27,7 +27,7 @@ TAG* read_arquivo(TAG* arv){
         }
         if(!strcmp(fig,"TRA")){
             int base_menor = 0, base_maior = 0, altura = 0;
-            scanf(" %d %d %d",&base_maior, &base_menor, &altura);
+            scanf(" %d %d %d",&base_menor, &base_maior, &altura);
             figura = (void *)cria_trapezio(base_menor,base_maior,altura);
             tipo = 4;
             // imprime_trapezio(figura);
