@@ -3,3 +3,6 @@ main: main.c arvgen.h auxiliar.h avltree.h figuras.h learquivo.h menu.h arvb.h
 
 clean:
 	rm main
+
+redo: clean main
+	./main < entrada
