@@ -53,6 +53,7 @@ void menu(TAG *a){
             break;
             case 8:
                 libera_destroi(a);
+                a = NULL;
                 printf("Arvore destruída!");
             break;
         }
