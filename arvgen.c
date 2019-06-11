@@ -1,5 +1,6 @@
 #include "arvgen.h"
 #include "arvb.h"
+#include "leitura.h"
 
 #define RED   "\x1B[31m"
 #define GRN   "\x1B[32m"
@@ -299,6 +300,9 @@ void visita_info(int tipo, void *elem){
     }
 }
 
+// TODO se tiver tempo desacoplar a interface com o usário da alteração das dimensões
+// Utilizando apenas as funções de busca e já passando o elemto para realizar a alteração
+// Assim estes diálogos serão movidos para o menu e padronizados com os de criação de figura.
 void altera_dimensoes(TAG* a, int id){
     TAG* p = busca(a,id);
     void *elem = NULL;
@@ -307,33 +311,27 @@ void altera_dimensoes(TAG* a, int id){
         visita_info(p->tipo, p->info);
         printf("\nInsira as novas dimensões desejadas para");
         if(p-> tipo == 2){
-            printf(" a base e altura\n");
-            float base = 0, altura = 0;
-            scanf(" %f %f", &base, &altura);
+            float base = read_float(" a base ");
+            float altura = read_float("a altura ");
             elem = cria_triangulo(base, altura);
         }
         if(p-> tipo == 3){
-            printf(" a base e altura\n");
-            float base = 0, altura = 0;
-            scanf(" %f %f", &base, &altura);
+            float base = read_float(" a base ");
+            float altura = read_float("a altura ");
             elem = cria_retangulo(base, altura);
         }
         if(p-> tipo == 4){
-            printf(" a base maior, base menor e altura\n");
-            float base_maior = 0, base_menor = 0, altura = 0;
-            scanf(" %f %f %f", &base_maior, &base_menor, &altura);
-            elem = cria_trapezio(base_maior, base_menor, altura);
+            float base_menor = read_float(" base menor ");
+            float base_maior = read_float("base maior ");
+            float altura = read_float(" altura ");
+            elem = cria_trapezio(base_menor, base_maior, altura);
         }
         if(p-> tipo == 0){
-            printf(" o raio");
-            float raio = 0;
-            scanf(" %f", &raio);
+            float raio = read_float(" o raio");
             elem = cria_circulo(raio);
         }
         if(p-> tipo == 1){
-            printf(" o lado");
-            float lado = 0;
-            scanf(" %f", &lado);
+            float lado = read_float(" o lado");
             elem = cria_quadrado(lado);
         }
         void *tmp = p->info;

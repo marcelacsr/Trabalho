@@ -153,7 +153,6 @@ void menu_altera_dimensoes(TAG *a){
 }
 
 void menu_busca_figura(TAG *a){
-    int cod = 0;
     printf("\n*** Buscar Figuras ***\n");
     int cod = read_int("Insira o cod da figura que deseja buscar\n");
     TAG *p = NULL;
