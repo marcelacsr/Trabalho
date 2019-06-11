@@ -12,6 +12,7 @@ int main(void)
     a = read_arquivo(a);
     imprime(a);
     printf("\n");
+    menu(a);
     printf("\n");
     printf("\n");
         

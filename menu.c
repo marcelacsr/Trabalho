@@ -146,7 +146,6 @@ void menu_retira_figura(TAG *a){
     printf("Insira o código da figura que deseja retirar\n");        
     scanf(" %d", &cod);
     a = retira_figuras(a, cod);
-    menu(a);    
 }
 
 void menu_altera_dimensoes(TAG *a){
@@ -155,7 +154,6 @@ void menu_altera_dimensoes(TAG *a){
     printf("Insira o cod do elemento que deseja alterar as dimensoes\n");
     scanf(" %d", &cod);
     altera_dimensoes(a, cod);
-    menu(a);
 }
 
 void menu_busca_figura(TAG *a){
@@ -172,5 +170,4 @@ void menu_busca_figura(TAG *a){
     {
         printf("\nCódigo não encontrado!\n");
     }    
-    menu(a);
 }
