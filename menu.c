@@ -2,6 +2,9 @@
 #include "arvgen.h"
 #include "figuras.h"
 #include "avltree.h"
+#include <stdio.h>
+#include <stdlib.h> 
+#include "leitura.h"
 
 void menu(TAG *a){
     int opt = 1;
@@ -18,7 +21,7 @@ void menu(TAG *a){
         printf("7 - Converter para arvore B\n");
         printf("8 - Destruir a arvore genérica\n");
         printf("0 - Sair do programa\n");
-        scanf(" %d", &opt);
+        opt =read_int("");
 
         switch (opt){
             case 0:
@@ -69,6 +72,7 @@ void menu_nova_figura(TAG *a){
     int cod_pai = 0;
     float base = 0;
     float altura = 0;
+    float lado = 0;
     while(1){
         printf("\n*** Figuras ***\n");
         printf("1 - Inserir um circulo\n");
@@ -94,10 +98,9 @@ void menu_nova_figura(TAG *a){
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
             case 2:
-                printf("Insira as novas dimensões do quadrado: para o lado\n");
-                float lado = 0;
+                lado = 0;
                 cod_pai = 0;
-                scanf(" %f", &lado);
+                lado = read_float("Insira as novas dimensões do quadrado: para o lado\n");
                 elem = cria_quadrado(lado);
                 dialogo_codigo_pai();
                 scanf(" %d", &cod_pai);
