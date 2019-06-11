@@ -156,10 +156,10 @@ void initAVL_Tree(AVL_Tree *tree) {
     tree->root = NULL;
 }
 
-void libera(AVL_Tree *tree){
+void libera_avl(AVL_TreeNode *tree){
     if (tree){
-        libera(tree->left);
-        libera(tree->right);
+        libera_avl(tree->left);
+        libera_avl(tree->right);
         free(tree->elem);
         free(tree);
     }

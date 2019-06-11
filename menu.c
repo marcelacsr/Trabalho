@@ -43,7 +43,8 @@ void menu(TAG *a){
             case 6:
                 arv = cover(a);
                 imprime_avl(arv->root);
-                libera(arv);
+                printf("\nArvore será destruída\n");
+                libera_avl(arv->root);
             break;
             case 7:
             //TODO
