@@ -10,8 +10,12 @@ int main(void)
     TAG *a = inicializa();
     printf("Lendo arquivo..\n");
     a = read_arquivo(a);
-    TAB *b = Inicializa();
-    b = coverter_em_TAB(a);
+    imprime(a);
+    printf("\n");
+    printf("\n");
+    printf("\n");
+        
+    TAB *b = coverter_em_TAB(a);
     Imprime(b,0);
     
 }

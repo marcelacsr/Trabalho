@@ -1,4 +1,5 @@
 #include "arvgen.h"
+#include "arvb.h"
 
 #define RED   "\x1B[31m"
 #define GRN   "\x1B[32m"
@@ -375,17 +376,21 @@ void converte(TAG *a, AVL_Tree **arv){
 }
 
 TAB* coverter_em_TAB(TAG *a){
-    TAB *arvb = (TAB*) malloc(sizeof (TAB));
-    arvb = Cria(2);
+    TAB *arvb = Inicializa();
+    converte_em_b(a,&(arvb));
     return arvb;
 }
 
-void converte_em_b(TAG *a, TAB** b){
+void converte_em_b(TAG *a, TAB **b){
     if(!a){
         return;
     }
     TAG *p;
-    *b = Insere(*b, a->cod, a->tipo, a->info,2);
+    TABNO *novo = (TABNO*) malloc(sizeof(TABNO));
+    novo->chave = a->cod;
+    novo->tipo = a->tipo;
+    novo->elem = a->info;
+    *b = Insere(*b, novo, 2);
     for (p = a->filho; p != NULL; p = p->irmao){
         converte_em_b(p,&(*b));
     }
