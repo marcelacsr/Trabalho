@@ -139,28 +139,23 @@ void menu_nova_figura(TAG *a){
 }
 
 void menu_retira_figura(TAG *a){
-    int cod = 1;
     void *elem = NULL;
     int cod_pai = 0;        
     printf("\n*** Retirar Figuras ***\n");
-    printf("Insira o código da figura que deseja retirar\n");        
-    scanf(" %d", &cod);
+    int cod = read_int("Insira o código da figura que deseja retirar\n");        
     a = retira_figuras(a, cod);
 }
 
 void menu_altera_dimensoes(TAG *a){
-    int cod = 0;    
     printf("\n*** Alterar Figuras ***\n");
-    printf("Insira o cod do elemento que deseja alterar as dimensoes\n");
-    scanf(" %d", &cod);
+    int cod = read_int("Insira o cod do elemento que deseja alterar as dimensoes\n");
     altera_dimensoes(a, cod);
 }
 
 void menu_busca_figura(TAG *a){
     int cod = 0;
     printf("\n*** Buscar Figuras ***\n");
-    printf("Insira o cod da figura que deseja buscar\n");
-    scanf(" %d", &cod);
+    int cod = read_int("Insira o cod da figura que deseja buscar\n");
     TAG *p = NULL;
     p = busca(a, cod);
     if (p){
