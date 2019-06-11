@@ -13,21 +13,35 @@
 #define WHT   "\x1B[37m"
 #define RESET "\x1B[0m"
 
-void imprime_avl( AVL_TreeNode * T) {
+void imprime_avl_detalhado(AVL_TreeNode * T){
+    imprime_avl(T,1);
+}
+
+void imprime_avl_normal(AVL_TreeNode * T){
+    imprime_avl(T,0);
+}
+
+void imprime_avl(AVL_TreeNode * T, int flag) {
     if (!T) {
         printf(("<>"));
     } else {
         if ((!T->left)&&(!T->right)) {
             printf("<");
             printf(RED"%d"RESET, T->id);
-            //visita_info(T->tipo, T->elem);
+            if(flag){
+                printf(" ");
+                visita_info(T->tipo, T->elem);
+                }
             printf(">");
         } else {
             printf("<");
             printf(BLU"%d"RESET, T->id);
-            //visita_info(T->tipo, T->elem);
-            imprime_avl(T->left);
-            imprime_avl(T->right);
+            if(flag){
+                printf(" ");
+                visita_info(T->tipo, T->elem);
+                }
+            imprime_avl(T->left,flag);
+            imprime_avl(T->right,flag);
             printf(">");
         }
     }
