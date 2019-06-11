@@ -305,7 +305,7 @@ void altera_dimensoes(TAG* a, int id){
     if(p){
         printf("Figura a ser alterada: \n");
         visita_info(p->tipo, p->info);
-        printf("Insira as novas dimensões desejadas para");
+        printf("\nInsira as novas dimensões desejadas para");
         if(p-> tipo == 2){
             printf(" a base e altura\n");
             float base = 0, altura = 0;
