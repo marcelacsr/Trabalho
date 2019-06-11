@@ -15,8 +15,4 @@ int main(void)
     menu(a);
     printf("\n");
     printf("\n");
-        
-    TAB *b = coverter_em_TAB(a);
-    Imprime(b,0);
-    
 }

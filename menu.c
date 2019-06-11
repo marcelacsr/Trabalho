@@ -101,8 +101,6 @@ void menu_nova_figura(TAG *a){
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 1, elem);
             break;
             case 3:
-            //TODO fazer função para pegar o maior ID da árvore,
-            // para então, ao criar uma figura adicionar esse id +1 como id do nó
                 printf("Insira as novas dimensões do triangulo: para a base e a altura\n");
                 base = 0;
                 altura = 0;
