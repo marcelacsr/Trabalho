@@ -82,13 +82,14 @@ TAG *menu_nova_figura(TAG *a){
     float base_maior = 0;
     void *elem = NULL;
     while(1){
-        printf("\n*** Figuras ***\n");
-        printf("1 - Inserir um circulo\n");
-        printf("2 - Inserir um quadrado\n");
-        printf("3 - Inserir um triangulo\n");
-        printf("4 - Inserir um retangulo\n");
-        printf("5 - Inserir um trapezio\n");
-        printf("0 - Voltar ao Menu Principal\n");
+        printf("\n   ************************ Figuras ************************\n");
+        printf("   || 1 ------------------------------ Inserir um circulo ||\n");
+        printf("   || 2 ----------------------------- Inserir um quadrado ||\n");
+        printf("   || 3 ---------------------------- Inserir um triangulo ||\n");
+        printf("   || 4 ---------------------------- Inserir um retangulo ||\n");
+        printf("   || 5 ----------------------------- Inserir um trapezio ||\n");
+        printf("   || 0 -------------------------Voltar ao Menu Principal ||\n");
+        printf("   *********************************************************\n");
         op = read_int("");
         switch (op){
             case 0:
