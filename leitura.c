@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "leitura.h"
 
 int clean_stdin(){
     while (getchar()!='\n');
