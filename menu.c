@@ -9,7 +9,7 @@
 void menu(TAG *a){
     int opt = 1;
     AVL_Tree *arv;
-    TAB *b;
+    TAB *b = NULL;
     while(opt){
         printf("\n***Arvores Genericas***\n");
         printf("1 - Buscar figura geométrica\n");
@@ -19,7 +19,7 @@ void menu(TAG *a){
         printf("5 - Alterar as dimensoes de uma figura\n");
         printf("6 - Converter para arvore AVL\n");
         printf("7 - Converter para arvore B\n");
-        printf("8 - Destruir a arvore genérica\n");
+        printf("8 - Destruir e reinicalizar a arvore genérica\n");
         printf("0 - Sair do programa\n");
         opt =read_int("");
 
@@ -36,7 +36,7 @@ void menu(TAG *a){
                 imprime(a);
             break;
             case 3:
-                menu_nova_figura(a);
+                a = menu_nova_figura(a);
             break;
             case 4:
                 menu_retira_figura(a);
@@ -59,7 +59,7 @@ void menu(TAG *a){
             break;
             case 8:
                 libera_destroi(a);
-                a = NULL;
+                a = inicializa();
                 printf("Arvore genérica destruída!\n");
             break;
             default:
@@ -70,7 +70,7 @@ void menu(TAG *a){
     return;
 }
 
-void menu_nova_figura(TAG *a){
+TAG *menu_nova_figura(TAG *a){
     int op = 1;
     while(1){
         printf("\n*** Figuras ***\n");
@@ -91,7 +91,7 @@ void menu_nova_figura(TAG *a){
             float base_maior = 0;
             void *elem = NULL;
             case 0:
-                return;
+                return a;
             break;
             case 1:
                 printf("Insira a nova dimensão do circulo:\n");
