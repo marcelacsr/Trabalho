@@ -344,7 +344,7 @@ void altera_dimensoes(TAG* a, int id){
 
 int busca_maior_cod(TAG *a){
     if (!a)
-        return -1;
+        return 0;
     int maior = max(a->cod, busca_maior_cod(a->irmao));
     maior = max(maior, busca_maior_cod(a->filho));
     return maior;
