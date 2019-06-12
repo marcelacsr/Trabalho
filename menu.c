@@ -99,7 +99,7 @@ TAG *menu_nova_figura(TAG *a){
         printf("   || "CYN"3 ----- Inserir um triangulo"RESET" ||\n");
         printf("   || "YEL"4 ----- Inserir um retangulo"RESET" ||\n");
         printf("   || "BLU"5 ------ Inserir um trapezio"RESET" ||\n");
-        printf("   ||0 - Voltar ao Menu Principal ||\n");
+        printf("   || 0 - Voltar ao Menu Principal ||\n");
         printf("   **********************************\n");
         op = read_int("");
         switch (op){
@@ -167,7 +167,7 @@ void menu_altera_dimensoes(TAG *a){
 }
 
 void menu_busca_figura(TAG *a){
-    printf("\n  ************ Buscar Figuras ************\n");
+    printf("\n    ************ Buscar Figuras ************\n");
     int cod = read_int("    Insira o cod da figura que deseja buscar\n");
     TAG *p = NULL;
     p = busca(a, cod);
