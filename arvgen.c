@@ -240,7 +240,9 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
         if (cod_pai != 0)            
             printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
         else{
-            a = cria(cod, cod_pai, tipo, elem);
+            if (cod != cod_pai){
+                a = cria(cod, cod_pai, tipo, elem);
+            }
         }
         return a;
     }
