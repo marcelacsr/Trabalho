@@ -39,7 +39,7 @@ Implementação das funções de árvores genéricas no número de filhos, árvo
 
 ### Imagem da estrutura da Árvore Genérica:
 
-![Imagem da estrutura da Árvore Genérica](img/estruturaarvgen.png)
+![Imagem da estrutura da Árvore Genérica](img/estrutura.png)
 
 ### Figuras:
 
