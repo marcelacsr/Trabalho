@@ -72,6 +72,14 @@ void menu(TAG *a){
 
 TAG *menu_nova_figura(TAG *a){
     int op = 1;
+    int cod_pai = 0;
+    float base = 0;
+    float altura = 0;
+    float lado = 0;
+    float raio = 0;
+    float base_menor = 0;
+    float base_maior = 0;
+    void *elem = NULL;
     while(1){
         printf("\n*** Figuras ***\n");
         printf("1 - Inserir um circulo\n");
@@ -82,14 +90,6 @@ TAG *menu_nova_figura(TAG *a){
         printf("0 - Voltar ao Menu Principal\n");
         op = read_int("");
         switch (op){
-            int cod_pai = 0;
-            float base = 0;
-            float altura = 0;
-            float lado = 0;
-            float raio = 0;
-            float base_menor = 0;
-            float base_maior = 0;
-            void *elem = NULL;
             case 0:
                 return a;
             break;
