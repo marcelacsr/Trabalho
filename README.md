@@ -47,6 +47,16 @@ Implementação das funções de árvores genéricas no número de filhos, árvo
 
 ### Comandos para executar o programa:
 
+1. Compilando o programa
+```
+make main
+```
+2. Executando
+```
+./main < arquivo_de_entrada
+```
 
-
-
+#### Limpando o programa para recompilar
+```
+make clean
+```
