@@ -11,22 +11,23 @@ void menu(TAG *a){
     AVL_Tree *arv;
     TAB *b = NULL;
     while(opt){
-        printf("\n***Arvores Genericas***\n");
-        printf("1 - Buscar figura geométrica\n");
-        printf("2 - Imprimir a arvore\n");
-        printf("3 - Inserir uma figura\n");
-        printf("4 - Retirar uma figura\n");
-        printf("5 - Alterar as dimensoes de uma figura\n");
-        printf("6 - Converter para arvore AVL\n");
-        printf("7 - Converter para arvore B\n");
-        printf("8 - Destruir e reinicalizar a arvore genérica\n");
-        printf("0 - Sair do programa\n");
+        printf("\n   ******************* Arvores Genericas *******************\n");
+        printf("   || 1 ------------------------ Buscar figura geométrica ||\n");
+        printf("   || 2 ------------------------------- Imprimir a arvore ||\n");
+        printf("   || 3 ------------------------------ Inserir uma figura ||\n");
+        printf("   || 4 ------------------------------ Retirar uma figura ||\n");
+        printf("   || 5 -------------- Alterar as dimensoes de uma figura ||\n");
+        printf("   || 6 ----------------------- Converter para arvore AVL ||\n");
+        printf("   || 7 ------------------------- Converter para arvore B ||\n");
+        printf("   || 8 ------- Destruir e reinicalizar a arvore genérica ||\n");
+        printf("   || 0 -------------------------------- Sair do programa ||\n");
+        printf("   *********************************************************\n");
         opt =read_int("");
 
         switch (opt){
             case 0:
                 libera_destroi(a);
-                printf("\nSaindo...\n");
+                printf("\n  Saindo...\n");
                 return;
             break;
             case 1:
@@ -60,10 +61,10 @@ void menu(TAG *a){
             case 8:
                 libera_destroi(a);
                 a = inicializa();
-                printf("Arvore genérica destruída!\n");
+                printf("    Arvore genérica destruída!\n");
             break;
             default:
-                printf("Opção Inválida\n");     
+                printf("    Opção Inválida\n");     
             break;
         }
     }
