@@ -6,22 +6,33 @@
 #include <stdlib.h> 
 #include "leitura.h"
 
+#define RED   "\x1B[31m"
+#define GRN   "\x1B[32m"
+#define YEL   "\x1B[33m"
+#define BLU   "\x1B[34m"
+#define MAG   "\x1B[35m"
+#define CYN   "\x1B[36m"
+#define WHT   "\x1B[37m"
+#define RESET "\x1B[0m"
+
+
 void menu(TAG *a){
     int opt = 1;
     AVL_Tree *arv;
     TAB *b = NULL;
     while(opt){
-        printf("\n   ******************* Arvores Genericas *******************\n");
-        printf("   || 1 ------------------------ Buscar figura geométrica ||\n");
-        printf("   || 2 ------------------------------- Imprimir a arvore ||\n");
-        printf("   || 3 ------------------------------ Inserir uma figura ||\n");
-        printf("   || 4 ------------------------------ Retirar uma figura ||\n");
-        printf("   || 5 -------------- Alterar as dimensoes de uma figura ||\n");
-        printf("   || 6 ----------------------- Converter para arvore AVL ||\n");
-        printf("   || 7 ------------------------- Converter para arvore B ||\n");
-        printf("   || 8 ------- Destruir e reinicalizar a arvore genérica ||\n");
-        printf("   || 0 -------------------------------- Sair do programa ||\n");
-        printf("   *********************************************************\n");
+        printf("\n   **************** Árvores Genéricas *****************\n");
+        printf("\n   **************** Escolha uma opção *****************\n");
+        printf("   || 1 ------------------- Buscar figura geométrica ||\n");
+        printf("   || 2 -------------------------- Imprimir a árvore ||\n");
+        printf("   || 3 ------------------------- Inserir uma figura ||\n");
+        printf("   || 4 ------------------------- Retirar uma figura ||\n");
+        printf("   || 5 ---------- Alterar as dimenões de uma figura ||\n");
+        printf("   || 6 ------------------ Converter para árvore AVL ||\n");
+        printf("   || 7 -------------------- Converter para árvore B ||\n");
+        printf("   || 8 - Destruir e reinicializar a arvore genérica ||\n");
+        printf("   || 0 --------------------------- "RED"Sair do programa"RESET" ||\n");
+        printf("   ****************************************************\n");
         opt =read_int("");
 
         switch (opt){
@@ -82,14 +93,14 @@ TAG *menu_nova_figura(TAG *a){
     float base_maior = 0;
     void *elem = NULL;
     while(1){
-        printf("\n   ************************ Figuras ************************\n");
-        printf("   || 1 ------------------------------ Inserir um circulo ||\n");
-        printf("   || 2 ----------------------------- Inserir um quadrado ||\n");
-        printf("   || 3 ---------------------------- Inserir um triangulo ||\n");
-        printf("   || 4 ---------------------------- Inserir um retangulo ||\n");
-        printf("   || 5 ----------------------------- Inserir um trapezio ||\n");
-        printf("   || 0 -------------------------Voltar ao Menu Principal ||\n");
-        printf("   *********************************************************\n");
+        printf("\n   ************* Figuras ************\n");
+        printf("   || "RED"1 ------- Inserir um circulo"RESET" ||\n");
+        printf("   || "GRN"2 ------ Inserir um quadrado"RESET" ||\n");
+        printf("   || "CYN"3 ----- Inserir um triangulo"RESET" ||\n");
+        printf("   || "YEL"4 ----- Inserir um retangulo"RESET" ||\n");
+        printf("   || "BLU"5 ------ Inserir um trapezio"RESET" ||\n");
+        printf("   || 0 - Voltar ao Menu Principal ||\n");
+        printf("   **********************************\n");
         op = read_int("");
         switch (op){
             case 0:
