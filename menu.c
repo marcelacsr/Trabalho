@@ -62,6 +62,7 @@ void menu(TAG *a){
                 printf("\n");
                 imprime_avl_detalhado(arv->root);
                 libera_avl(arv->root);
+                arv = NULL;
             break;
             case 7:
                 b = coverter_em_TAB(a);
