@@ -99,7 +99,7 @@ TAG *menu_nova_figura(TAG *a){
         printf("   || "CYN"3 ----- Inserir um triangulo"RESET" ||\n");
         printf("   || "YEL"4 ----- Inserir um retangulo"RESET" ||\n");
         printf("   || "BLU"5 ------ Inserir um trapezio"RESET" ||\n");
-        printf("   || 0 - Voltar ao Menu Principal ||\n");
+        printf("   ||0 - Voltar ao Menu Principal ||\n");
         printf("   **********************************\n");
         op = read_int("");
         switch (op){
@@ -108,39 +108,39 @@ TAG *menu_nova_figura(TAG *a){
             break;
             case 1:
                 printf("    Insira a nova dimensão do circulo:\n");
-                raio = read_float(" raio: ");
+                raio = read_float("    raio: ");
                 elem = cria_circulo(raio);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
             case 2:
                 printf("    Insira as novas dimensões do quadrado:\n");
-                lado = read_float("lado: ");
+                lado = read_float("    lado: ");
                 elem = cria_quadrado(lado);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 1, elem);
             break;
             case 3:
-                printf("Insira as novas dimensões do triangulo:\n");
-                base = read_float("base: ");
-                altura = read_float("altura: ");
+                printf("    Insira as novas dimensões do triangulo:\n");
+                base = read_float("    base: ");
+                altura = read_float("    altura: ");
                 elem = cria_triangulo(base,altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 2, elem);
             break;
             case 4: 
-                printf("Insira as novas dimensões do retangulo:\n");
-                base = read_float("base: ");
-                altura = read_float("altura: ");
+                printf("    Insira as novas dimensões do retangulo:\n");
+                base = read_float("    base: ");
+                altura = read_float("    altura: ");
                 elem = cria_retangulo(base,altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 3, elem);
             break;
             case 5:
-                printf("Insira as novas dimensões do trapézio:\n");
-                base_menor = read_float("base menor: ");
-                base_maior = read_float("base maior: ");
-                altura = read_float("altura: ");
+                printf("    Insira as novas dimensões do trapézio:\n");
+                base_menor = read_float("    base menor: ");
+                base_maior = read_float("    base maior: ");
+                altura = read_float("    altura: ");
                 elem = cria_trapezio(base_menor, base_maior, altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 4, elem);
@@ -155,19 +155,19 @@ TAG *menu_nova_figura(TAG *a){
 void menu_retira_figura(TAG *a){
     void *elem = NULL;
     int cod_pai = 0;        
-    printf("\n*** Retirar Figuras ***\n");
-    int cod = read_int("Insira o código da figura que deseja retirar\n");        
+    printf("\n    ************* Retirar Figuras **************\n");
+    int cod = read_int("    Insira o código da figura que deseja retirar\n");        
     a = retira_figuras(a, cod);
 }
 
 void menu_altera_dimensoes(TAG *a){
-    printf("\n  *** Alterar Figuras ***\n");
+    printf("\n    ******************** Alterar Figuras *******************\n");
     int cod = read_int("    Insira o cod do elemento que deseja alterar as dimensoes\n");
     altera_dimensoes(a, cod);
 }
 
 void menu_busca_figura(TAG *a){
-    printf("\n  *** Buscar Figuras ***\n");
+    printf("\n  ************ Buscar Figuras ************\n");
     int cod = read_int("    Insira o cod da figura que deseja buscar\n");
     TAG *p = NULL;
     p = busca(a, cod);
@@ -176,10 +176,10 @@ void menu_busca_figura(TAG *a){
     }
     else
     {
-        printf("\n  Código não encontrado!\n");
+        printf("\n    Código não encontrado!\n");
     }    
 }
 
 int dialogo_codigo_pai(){
-    return read_int("   Insira o código do pai: ");
+    return read_int("    Insira o código do pai: ");
 }
