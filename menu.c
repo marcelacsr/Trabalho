@@ -49,20 +49,20 @@ void menu(TAG *a){
                 imprime_avl_normal(arv->root);
                 printf("\n");
                 imprime_avl_detalhado(arv->root);
-                printf("\nArvore será destruída\n");
                 libera_avl(arv->root);
             break;
             case 7:
                 b = coverter_em_TAB(a);
                 Imprime(b,0);
+                Libera(b);
             break;
             case 8:
                 libera_destroi(a);
                 a = NULL;
-                printf("Arvore destruída!");
+                printf("Arvore genérica destruída!\n");
             break;
             default:
-                printf("Opção Invalida\n");     
+                printf("Opção Inválida\n");     
             break;
         }
     }
@@ -94,45 +94,45 @@ void menu_nova_figura(TAG *a){
             break;
             case 1:
                 printf("Insira a nova dimensão do circulo:\n");
-                raio = read_float("raio\n");
+                raio = read_float("raio: ");
                 elem = cria_circulo(raio);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
             case 2:
                 printf("Insira as novas dimensões do quadrado:\n");
-                lado = read_float("lado \n");
+                lado = read_float("lado: ");
                 elem = cria_quadrado(lado);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 1, elem);
             break;
             case 3:
                 printf("Insira as novas dimensões do triangulo:\n");
-                base = read_float("base ");
-                altura = read_float("altura ");
+                base = read_float("base: ");
+                altura = read_float("altura: ");
                 elem = cria_triangulo(base,altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 2, elem);
             break;
             case 4: 
                 printf("Insira as novas dimensões do retangulo:\n");
-                base = read_float("base ");
-                altura = read_float("altura ");
+                base = read_float("base: ");
+                altura = read_float("altura: ");
                 elem = cria_retangulo(base,altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 3, elem);
             break;
             case 5:
-                printf("Insira as novas dimensões do trapézio: , a base maior e a altura\n");
-                base_menor = read_float("base menor ");
-                base_maior = read_float("base maior ");
-                altura = read_float("altura ");
+                printf("Insira as novas dimensões do trapézio:\n");
+                base_menor = read_float("base menor: ");
+                base_maior = read_float("base maior: ");
+                altura = read_float("altura: ");
                 elem = cria_trapezio(base_menor, base_maior, altura);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 4, elem);
             break;
             default:
-                printf("Opção Invalida\n");     
+                printf("\nOpção Inválida!\n");     
             break;
         }
     }
@@ -167,5 +167,5 @@ void menu_busca_figura(TAG *a){
 }
 
 int dialogo_codigo_pai(){
-    return read_int("Insira o código do pai\n");
+    return read_int("Insira o código do pai: ");
 }

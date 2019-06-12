@@ -4,8 +4,7 @@
 #include "arvgen.h"
 
 TAG* read_arquivo(TAG* arv){   
-    while(1){ //while true msm? 
-              //Medicina. Eles fazem o que querem. Digo... Tem um break ali que quebra o laço qnd n tem mais linhas lidas.
+    while(1){
         int a = 0, b = 0, tipo = -1;
         char fig[4];
         int t = scanf("%d/%d/%s",&a, &b, fig);
