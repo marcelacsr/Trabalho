@@ -55,6 +55,7 @@ void menu(TAG *a){
                 b = coverter_em_TAB(a);
                 Imprime(b,0);
                 Libera(b);
+                b = NULL;
             break;
             case 8:
                 libera_destroi(a);
