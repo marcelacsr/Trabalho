@@ -107,14 +107,14 @@ TAG *menu_nova_figura(TAG *a){
                 return a;
             break;
             case 1:
-                printf("Insira a nova dimensão do circulo:\n");
-                raio = read_float("raio: ");
+                printf("    Insira a nova dimensão do circulo:\n");
+                raio = read_float(" raio: ");
                 elem = cria_circulo(raio);
                 cod_pai = dialogo_codigo_pai();
                 a = insere_cria(a, busca_maior_cod(a)+1, cod_pai, 0, elem);
             break;
             case 2:
-                printf("Insira as novas dimensões do quadrado:\n");
+                printf("    Insira as novas dimensões do quadrado:\n");
                 lado = read_float("lado: ");
                 elem = cria_quadrado(lado);
                 cod_pai = dialogo_codigo_pai();
@@ -161,14 +161,14 @@ void menu_retira_figura(TAG *a){
 }
 
 void menu_altera_dimensoes(TAG *a){
-    printf("\n*** Alterar Figuras ***\n");
-    int cod = read_int("Insira o cod do elemento que deseja alterar as dimensoes\n");
+    printf("\n  *** Alterar Figuras ***\n");
+    int cod = read_int("    Insira o cod do elemento que deseja alterar as dimensoes\n");
     altera_dimensoes(a, cod);
 }
 
 void menu_busca_figura(TAG *a){
-    printf("\n*** Buscar Figuras ***\n");
-    int cod = read_int("Insira o cod da figura que deseja buscar\n");
+    printf("\n  *** Buscar Figuras ***\n");
+    int cod = read_int("    Insira o cod da figura que deseja buscar\n");
     TAG *p = NULL;
     p = busca(a, cod);
     if (p){
@@ -176,10 +176,10 @@ void menu_busca_figura(TAG *a){
     }
     else
     {
-        printf("\nCódigo não encontrado!\n");
+        printf("\n  Código não encontrado!\n");
     }    
 }
 
 int dialogo_codigo_pai(){
-    return read_int("Insira o código do pai: ");
+    return read_int("   Insira o código do pai: ");
 }

@@ -134,14 +134,14 @@ TAG *retira_figuras(TAG *a, int cod){
         return NULL;
     TAG *r = busca(a, cod); //encontrou o elemento
     if (!r){
-        printf("Elemento não encontrado!\n");
+        printf("    Elemento não encontrado!\n");
         return r; //NULL
     }
     if (r->cod_pai == 0){
-        printf("Elemento é RAÍZ, não pode ser removido!\n");
+        printf("    Elemento é RAÍZ, não pode ser removido!\n");
         return a;
     }
-    printf("\nRemovendo o elemento de código: %d\n", cod);
+    printf("\n  Removendo o elemento de código: %d\n", cod);
     TAG *pai = busca(a, r->cod_pai); //encontrar o pai do elemento que quer remover
     TAG *atual = pai->filho;
     TAG *ant = NULL;
@@ -238,7 +238,7 @@ TRIANGULO
 TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
     if (!a){
         if (cod_pai != 0)            
-            printf("A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
+            printf("    A arvore está vazia e o nó que vc está tentando inserir não possui código de raiz, a inserção não está autorizada!!!!!!!\n");
         else{
             if (cod != cod_pai){
                 a = cria(cod, cod_pai, tipo, elem);
@@ -248,17 +248,17 @@ TAG *insere_cria(TAG *a, int cod, int cod_pai, int tipo, void *elem){
     }
     //verifica se quer inserir um cod = o cod_pai
     if (cod == cod_pai){
-        printf("Código do pai é igual ao código do filho!\n");
+        printf("    Código do pai é igual ao código do filho!\n");
         return a; //não insere
     }
     //verifica se o cod existe
     if (busca2(a, cod) == 1){
-        printf("Cod ja existe!\n");
+        printf("    Cod ja existe!\n");
         return a; // não insere
     }
     //verifica se cod_pai existe
     if (busca2(a, cod_pai) == 0){
-        printf("Nao encontrou cod_pai!\n");
+        printf("    Nao encontrou cod_pai!\n");
         return a; //não insere
     }
     TAG *novo_no_filho = cria(cod, cod_pai, tipo, elem);
@@ -309,23 +309,23 @@ void altera_dimensoes(TAG* a, int id){
     TAG* p = busca(a,id);
     void *elem = NULL;
     if(p){
-        printf("Figura a ser alterada: \n");
+        printf("    Figura a ser alterada: ");
         visita_info(p->tipo, p->info);
-        printf("\nInsira as novas dimensões desejadas para ");
+        printf("\n    Insira as novas dimensões desejadas para ");
         if(p-> tipo == 2){
             float base = read_float(" a base: ");
-            float altura = read_float(" a altura: ");
+            float altura = read_float("    a altura: ");
             elem = cria_triangulo(base, altura);
         }
         if(p-> tipo == 3){
             float base = read_float(" a base: ");
-            float altura = read_float(" a altura: ");
+            float altura = read_float("    a altura: ");
             elem = cria_retangulo(base, altura);
         }
         if(p-> tipo == 4){
             float base_menor = read_float(" base menor: ");
-            float base_maior = read_float(" base maior: ");
-            float altura = read_float(" altura: ");
+            float base_maior = read_float("    base maior: ");
+            float altura = read_float("    altura: ");
             elem = cria_trapezio(base_menor, base_maior, altura);
         }
         if(p-> tipo == 0){
@@ -339,8 +339,9 @@ void altera_dimensoes(TAG* a, int id){
         void *tmp = p->info;
         free(tmp);
         p->info = elem;
-        printf("\nFigura alterada: ");
+        printf("\n    Figura alterada: ");
         visita_info(p->tipo, p->info);
+        printf("\n");
     }
 }
 
